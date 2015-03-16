@@ -1,0 +1,37 @@
+{
+	"title": "Big Bunny",
+	"licence": "cc",
+	"langue": "FR-fr",
+	"author": "plop",
+	"trivia": "blbvlkkakakd ldldldlalddl zkzlsalalalma",
+	"crew": 
+		{
+			"1" : 
+				{ 	
+					"function" : "Autor",
+					"name"	: "Robin Desbois",
+					"api_rsc" : 
+						{
+							"name" : "people",
+							"id" : "1",
+							"depot" : "http://localhost:8888/codb-depot/"		
+						}
+				},
+			"2" : 
+				{ 	
+					"function" : "Autor",
+					"name"	: "Nicolas Stephane",
+					"api_rsc" : 
+						{
+							"name" : "people",
+							"id" : "1",	
+							"depot" : "http://localhost:8888/codb-depot/"
+						}
+				},
+			"3" : 
+				{ 
+					"function" : "Autor",
+					"name"	: "name"
+				}
+		}
+}
