@@ -10,28 +10,34 @@
 				{ 	
 					"function" : "Autor",
 					"name"	: "Robin Desbois",
-					"api_rsc" : 
+					"_api_rsc_link" : 
 						{
-							"name" : "people",
-							"id" : "1",
-							"depot" : "http://localhost:8888/codb-depot/"		
+							"_name" : "people",
+							"_id" : "1",
+							"_depot" : "local"		
 						}
 				},
 			"2" : 
 				{ 	
 					"function" : "Autor",
 					"name"	: "Nicolas Stephane",
-					"api_rsc" : 
+					"_api_rsc_link" : 
 						{
-							"name" : "people",
-							"id" : "1",	
-							"depot" : "http://localhost:8888/codb-depot/"
+							"_name" : "people",
+							"_id" : "2",	
+							"_depot" : "local"
 						}
 				},
 			"3" : 
 				{ 
 					"function" : "Autor",
-					"name"	: "name"
+					"name"	: "MouTeki TesOu",
+					"_api_rsc_link" : 
+						{
+							"_name" : "people",
+							"_id" : "3",	
+							"_depot" : "local"
+						}
 				}
 		}
 }

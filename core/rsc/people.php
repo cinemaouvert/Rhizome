@@ -17,23 +17,23 @@ function _peoples_list(){
 				$result[$i] = json_decode($json, true);
 
 				//identifiant resource
-				$result[$i]['api_rsc']['name'] = 'people';
-				$result[$i]['api_rsc']['id'] = str_replace('.json', '', $file);
-				$result[$i]['api_rsc']['depot'] = $ini_array['DEPOT']['local'];
-
+				$result[$i]['_api_rsc']['_name'] = 'people';
+				$result[$i]['_api_rsc']['_id'] = str_replace('.json', '', $file);
+				$result[$i]['_api_rsc']['_depot'] = $ini_array['DEPOT']['local'];
+_
 				//lien api
-				$result[$i]['api_link']['resolver']['list']['url'] = $ini_array['DEPOT']['local'].'resolver/peoples/';
-				$result[$i]['api_link']['resolver']['list']['method'] = 'GET';
-				$result[$i]['api_link']['list']['url'] = $ini_array['DEPOT']['local'].'peoples/';
-				$result[$i]['api_link']['list']['method'] = 'GET';
-				$result[$i]['api_link']['view']['url'] = $ini_array['DEPOT']['local'].'people/'.$result[$i]['api_rsc']['id'];
-				$result[$i]['api_link']['view']['method'] = 'GET';
-				$result[$i]['api_link']['add']['url'] = $ini_array['DEPOT']['local'].'people/';
-				$result[$i]['api_link']['add']['method'] = 'POST';
-				$result[$i]['api_link']['edit']['url'] = $ini_array['DEPOT']['local'].'people/';
-				$result[$i]['api_link']['edit']['method'] = 'PUT';
-				$result[$i]['api_link']['delete']['url'] = $ini_array['DEPOT']['local'].'people/';
-				$result[$i]['api_link']['delete']['method'] = 'DELETE';
+				$result[$i]['_api_link']['_resolver']['_list']['_url'] = $ini_array['DEPOT']['local'].'resolver/peoples/';
+				$result[$i]['_api_link']['_resolver']['_list']['method'] = 'GET';
+				$result[$i]['_api_link']['_list']['_url'] = $ini_array['DEPOT']['local'].'peoples/';
+				$result[$i]['_api_link']['_list']['_method'] = 'GET';
+				$result[$i]['_api_link']['_view']['_url'] = $ini_array['DEPOT']['local'].'people/'.$result[$i]['_api_rsc']['_id'];
+				$result[$i]['_api_link']['_view']['_method'] = 'GET';
+				$result[$i]['_api_link']['_add']['_url'] = $ini_array['DEPOT']['local'].'people/';
+				$result[$i]['_api_link']['_add']['_method'] = 'POST';
+				$result[$i]['_api_link']['_edit']['_url'] = $ini_array['DEPOT']['local'].'people/';
+				$result[$i]['_api_link']['_edit']['_method'] = 'PUT';
+				$result[$i]['_api_link']['_delete']['_url'] = $ini_array['DEPOT']['local'].'people/';
+				$result[$i]['_api_link']['_delete']['_method'] = 'DELETE';
 
 				$i++;
 			}
@@ -47,23 +47,23 @@ function _people_view($id){
 	$ini_array = parse_ini_file('depot.ini', true);
 
 	//identifiant resource
-	$result['api_rsc']['name'] = 'people';
-	$result['api_rsc']['id'] = $id;
-	$result['api_rsc']['depot'] = $ini_array['DEPOT']['local'];
-
+	$result['_api_rsc']['_name'] = 'people';
+	$result['_api_rsc']['_id'] = $id;
+	$result['_api_rsc']['_depot'] = $ini_array['DEPOT']['local'];
+_
 	//lien api
-	$result['api_link']['resolver']['list']['url'] = $ini_array['DEPOT']['local'].'resolver/peoples/';
-	$result['api_link']['resolver']['list']['method'] = 'GET';
-	$result['api_link']['list']['url'] = $ini_array['DEPOT']['local'].'peoples/';
-	$result['api_link']['list']['method'] = 'GET';
-	$result['api_link']['view']['url'] = $ini_array['DEPOT']['local'].'people/'.$id;
-	$result['api_link']['view']['method'] = 'GET';
-	$result['api_link']['add']['url'] = $ini_array['DEPOT']['local'].'people/';
-	$result['api_link']['add']['method'] = 'POST';
-	$result['api_link']['edit']['url'] = $ini_array['DEPOT']['local'].'people/';
-	$result['api_link']['edit']['method'] = 'PUT';
-	$result['api_link']['delete']['url'] = $ini_array['DEPOT']['local'].'people/';
-	$result['api_link']['delete']['method'] = 'DELETE';
+	$result['_api_link']['_resolver']['_list']['_url'] = $ini_array['DEPOT']['local'].'resolver/peoples/';
+	$result['_api_link']['_resolver']['_list']['_method'] = 'GET';
+	$result['_api_link']['_list']['_url'] = $ini_array['DEPOT']['local'].'peoples/';
+	$result['_api_link']['_list']['_method'] = 'GET';
+	$result['_api_link']['_view']['_url'] = $ini_array['DEPOT']['local'].'people/'.$id;
+	$result['_api_link']['_view']['_method'] = 'GET';
+	$result['_api_link']['_add']['_url'] = $ini_array['DEPOT']['local'].'people/';
+	$result['_api_link']['_add']['_method'] = 'POST';
+	$result['_api_link']['_edit']['_url'] = $ini_array['DEPOT']['local'].'people/';
+	$result['_api_link']['_edit']['_method'] = 'PUT';
+	$result['_api_link']['_delete']['_url'] = $ini_array['DEPOT']['local'].'people/';
+	$result['_api_link']['_delete']['_method'] = 'DELETE';
 
 	// Traitement resource
 	$json = file_get_contents("depot/people/$id.json");

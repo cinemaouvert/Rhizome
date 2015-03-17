@@ -1,4 +1,13 @@
 {
 	"name": "Robin",
-	"lastname": "DesBois"
+	"lastname": "DesBois",
+	"_api_rsc_link" : 
+		{
+			"1" : 
+				{
+					"_name" : "movie",
+					"_id" : "1",
+					"_depot" : "local"		
+				}
+		}
 }

@@ -1,4 +1,13 @@
 {
 	"name": "MouTeki",
-	"lastname": "TesOu"
+	"lastname": "TesOu",
+	"_api_rsc_link" : 
+		{
+			"1" : 
+				{
+					"_name" : "movie",
+					"_id" : "1",
+					"_depot" : "local"		
+				}
+		}
 }
