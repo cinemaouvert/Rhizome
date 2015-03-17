@@ -20,7 +20,7 @@ function _peoples_list(){
 				$result[$i]['_api_rsc']['_name'] = 'people';
 				$result[$i]['_api_rsc']['_id'] = str_replace('.json', '', $file);
 				$result[$i]['_api_rsc']['_depot'] = $ini_array['DEPOT']['local'];
-_
+
 				//lien api
 				$result[$i]['_api_link']['_resolver']['_list']['_url'] = $ini_array['DEPOT']['local'].'resolver/peoples/';
 				$result[$i]['_api_link']['_resolver']['_list']['method'] = 'GET';
@@ -50,7 +50,7 @@ function _people_view($id){
 	$result['_api_rsc']['_name'] = 'people';
 	$result['_api_rsc']['_id'] = $id;
 	$result['_api_rsc']['_depot'] = $ini_array['DEPOT']['local'];
-_
+
 	//lien api
 	$result['_api_link']['_resolver']['_list']['_url'] = $ini_array['DEPOT']['local'].'resolver/peoples/';
 	$result['_api_link']['_resolver']['_list']['_method'] = 'GET';
