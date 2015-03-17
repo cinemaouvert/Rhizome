@@ -1,9 +1,10 @@
 {
-	"title": "Big Bunny",
-	"licence": "cc",
-	"langue": "FR-fr",
-	"author": "plop",
-	"trivia": "blbvlkkakakd ldldldlalddl zkzlsalalalma",
+	"original_title": "Big Bunny",
+	"duration": "120",
+	"genre": "Documentaire",
+	"audio_channels_number": "2",
+	"production_country" : "France",
+	"pitch": "blbvlkkakakd ldldldlalddl zkzlsalalalma",
 	"crew": 
 		{
 			"1" : 
@@ -36,6 +37,29 @@
 						{
 							"_name" : "people",
 							"_id" : "3",	
+							"_depot" : "local"
+						}
+				}
+		},
+	"images_from_movie": 
+		{
+			"1" : 
+				{ 	
+					"type"	: "poster",
+					"_api_rsc_link" : 
+						{
+							"_name" : "attachment",
+							"_id" : "455d7zz77ze1d.jpg",
+							"_depot" : "local"		
+						}
+				},
+			"2" : 
+				{ 	
+					"type"	: "thumbmain",
+					"_api_rsc_link" : 
+						{
+							"_name" : "attachment",
+							"_id" : "44fz7z7aa1d.jpg",	
 							"_depot" : "local"
 						}
 				}
