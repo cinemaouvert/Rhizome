@@ -2,9 +2,9 @@
 
 $app->get(    '/resolver/depot/',                     '_resolver_depot');              			// affiche tous les depots du resolver
 $app->get(    '/resolver/movies/',                    '_resolver_movies_all');         			// affiche tous les films du resolver
-$app->get(    '/resolver/movies/:key/',                '_resolver_movies_all_by_key');           // affiche toutes les films du resolver
+$app->get(    '/resolver/movies/:key/',               '_resolver_movies_all_by_key');           // affiche toutes les films du resolver
 $app->get(    '/resolver/peoples/',                   '_resolver_peoples_all');         		// affiche toutes les personnes du resolver
-$app->get(    '/resolver/peoples/:key/',               '_resolver_peoples_all_by_key');          // affiche toutes les personnes du resolver
+$app->get(    '/resolver/peoples/:key/',              '_resolver_peoples_all_by_key');          // affiche toutes les personnes du resolver
 
 
 
