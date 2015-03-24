@@ -45,7 +45,11 @@ function _peoples_list(){
 		}
 	}
 	closedir($dir);
-	echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
+	if(isset($result)) echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
+	else {
+		$app = \Slim\Slim::getInstance();
+	    $app->halt(404);
+	}
 }
 
 function _peoples_list_by_key($key){
