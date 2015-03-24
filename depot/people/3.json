@@ -1,13 +1,16 @@
 {
 	"first_name": "MouTeki",
 	"last_name": "TesOu",
-	"_api_rsc_link" : 
+	"movies_participate" : 
 		{
 			"1" : 
 				{
-					"_name" : "movie",
-					"_id" : "1",
-					"_depot" : "local"		
+					"_api_rsc_link" : 
+						{
+							"_name" : "movie",
+							"_id" : "1",
+							"_depot" : "local"		
+						}
 				}
 		}
 }
