@@ -10,11 +10,12 @@ function _movies_list(){
 	// Analyse avec sections de core/core.ini .
 	$ini_array = parse_ini_file('depot.ini', true);
 	$i = 0;
+	$system = new System();
 	if($dir = opendir('depot/movie')){
 		while(false !== ($file = readdir($dir))){
 			if($file != '.' && $file != '..' && $file != '.DS_Store'){
 				$json = file_get_contents("depot/movie/$file");
-				$result[$i] = json_decode($json, true);
+				$result[$i] = $system->_wiki(json_decode($json, true));
 				
 				//identifiant resource
 				$result[$i]['_api_rsc']['_name'] = 'movie';
@@ -40,7 +41,6 @@ function _movies_list(){
 		}
 	}
 	closedir($dir);
-	$system = new System();
 	echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
 }
 
@@ -52,6 +52,7 @@ function _movie_view($id){
 		$result['_api_rsc']['_name'] = 'movie';
 		$result['_api_rsc']['_id'] = $id;
 		$result['_api_rsc']['_depot'] = $ini_array['DEPOT']['local'];
+		
 
 		// Lien api
 		$result['_api_link']['_resolver']['_list']['_url'] = $ini_array['DEPOT']['local'].'resolver/movies/';
@@ -68,10 +69,10 @@ function _movie_view($id){
 		$result['_api_link']['_delete']['_method'] = 'DELETE';
 
 		// Traitement resource
-		$json = file_get_contents("depot/movie/$id.json");
-		$result1 = json_decode($json, true);
-		$result = array_merge($result, $result1);
 		$system = new System();
+		$json = file_get_contents("depot/movie/$id.json");
+		$result1 = $system->_wiki(json_decode($json, true));
+		$result = array_merge($result1, $result);
 		echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
 
 	} else {

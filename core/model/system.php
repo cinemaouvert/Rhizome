@@ -10,4 +10,20 @@
 			}
 			return $string;
 		}
+
+		public function _wiki($array){
+			if(isset($array['_api_key_user'])){
+				if($array['_api_key_user'] <> ""){
+					$array['_api_key_user'] = "true";
+				}
+				else{
+					$array['_api_key_user'] = "false";
+				}
+			}
+			else{
+				$array['_api_key_user'] = "false";
+			}
+			
+			return $array;
+		}
 	}
