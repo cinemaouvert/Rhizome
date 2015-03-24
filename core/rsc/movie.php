@@ -1,8 +1,8 @@
 <?php
 
 $app->get(    '/movies/',                    '_movies_list');         	  // affiche tous les films du depot
-$app->get(    '/movies/:key',                '_movies_list_by_key');      // affiche tous les films du depot par clé
-$app->get(    '/movie/:id',                  '_movie_view');              // affiche un film du depot
+$app->get(    '/movies/:key/',                '_movies_list_by_key');      // affiche tous les films du depot par clé
+$app->get(    '/movie/:id/',                  '_movie_view');              // affiche un film du depot
 $app->post(   '/movie/',                  	 '_movie_add');               // ajoute un film dans le depot 
 
 
@@ -65,7 +65,7 @@ function _movies_list_by_key($key){
 				if(isset($result1['_api_key_user']) AND $result1['_api_key_user'] == $key){
 					$result[$i] = json_decode($json, true);	
 					$result[$i] = $system->_wiki(json_decode($json, true));
-					
+
 					//identifiant resource
 					$result[$i]['_api_rsc']['_name'] = 'movie';
 					$result[$i]['_api_rsc']['_id'] = str_replace('.json', '', $file);
