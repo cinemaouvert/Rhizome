@@ -40,7 +40,8 @@ function _movies_list(){
 		}
 	}
 	closedir($dir);
-	echo json_encode($result); // Envoi de la réponse
+	$system = new System();
+	echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
 }
 
 function _movie_view($id){
@@ -69,10 +70,9 @@ function _movie_view($id){
 		// Traitement resource
 		$json = file_get_contents("depot/movie/$id.json");
 		$result1 = json_decode($json, true);
-		$system = new System();
-		$result1 = $system->_filter_json($result1); // Filtre json
 		$result = array_merge($result, $result1);
-		echo json_encode($result); // Envoi de la réponse
+		$system = new System();
+		echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
 
 	} else {
 	    $app = \Slim\Slim::getInstance();

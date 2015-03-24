@@ -40,7 +40,8 @@ function _peoples_list(){
 		}
 	}
 	closedir($dir);
-	echo json_encode($result); // Envoi de la réponse
+	$system = new System();
+	echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
 }
 
 function _people_view($id){
@@ -69,7 +70,8 @@ function _people_view($id){
 	$json = file_get_contents("depot/people/$id.json");
 	$result1 = json_decode($json, true);
 	$result = array_merge($result, $result1);
-	echo json_encode($result); // Envoi de la réponse
+	$system = new System();
+	echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
 }
 
 function _people_add(){
