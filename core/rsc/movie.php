@@ -89,7 +89,11 @@ function _movies_list_by_key($key){
 		}
 	}
 	closedir($dir);
-	echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
+	if(isset($result)) echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
+	else {
+		$app = \Slim\Slim::getInstance();
+	    $app->halt(404);
+	}
 }
 
 function _movie_view($id){
