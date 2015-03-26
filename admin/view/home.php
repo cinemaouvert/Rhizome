@@ -5,7 +5,7 @@
                 
             </div>
             <div class="large-3 columns">
-                <h4 class=" headings" style=" margin-top:-1.2rem; margin-bottom:1.5rem; text-align:right"><a href="" class="color-white"> Se deconnecter</a> </h4>
+                <div class=" headings" style=" margin-top:-0.9rem; margin-bottom:1.5rem; text-align:right"><a href="" class="color-white"> Se deconnecter</a></div> 
                 
             </div>
         </div>
