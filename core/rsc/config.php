@@ -1,6 +1,6 @@
 <?php
 
-$app->get(    '/config/',                    		'_config');         		   // affiche connexion administration
+$app->get(    '/config/',                    			'_config');         		 // affiche connexion administration
 $app->get(    '/config/:route/',                    	'_config_route');            // affiche home / install administration
 
 
