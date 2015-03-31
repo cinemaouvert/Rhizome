@@ -6,6 +6,7 @@ $app->get(    '/depot/option/',                     '_depot_option');          /
 $app->get(    '/depot/resolver/',                   '_depot_resolver');        // affiche tous les depots qui sont connecte à ce depot
 $app->get(    '/depot/movie/',                      '_depot_movie');           // affiche les champs de la ressource movie
 $app->get(    '/depot/people/',                     '_depot_people');          // affiche les champs de la ressource people
+$app->get(    '/depot/organisation/',               '_depot_organisation');    // affiche les champs de la ressource people
 
 
 function _depot(){
@@ -41,5 +42,11 @@ function _depot_movie(){
 function _depot_people(){
 	// Analyse avec sections de core/rsc/movie.ini .
 	$ini_array = parse_ini_file('core/rsc/people.ini', true);
+	echo json_encode($ini_array); // Envoi de la réponse
+}
+
+function _depot_organisation(){
+	// Analyse avec sections de core/rsc/movie.ini .
+	$ini_array = parse_ini_file('core/rsc/organisation.ini', true);
 	echo json_encode($ini_array); // Envoi de la réponse
 }
