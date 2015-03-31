@@ -3,7 +3,7 @@
 $app->get(    '/movies/',                    '_movies_list');         	  // affiche tous les films du depot
 $app->get(    '/movies/:key/',               '_movies_list_by_key');      // affiche tous les films du depot par clé
 $app->get(    '/movie/:id/',                 '_movie_view');              // affiche un film du depot
-$app->post(   '/movie/',                  	 '_movie_add');               // ajoute un film dans le depot 
+
 
 
 
@@ -141,9 +141,6 @@ function _movie_view($id){
 	exit;	
 }
 
-function _movie_add(){
-
-}
 
 
 

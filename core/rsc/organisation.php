@@ -3,7 +3,7 @@
 $app->get(    '/organisations/',                     '_organisations_list');         	  // affiche tous les organisations du depot
 $app->get(    '/organisations/:key/',                '_organisations_list_by_key');       // affiche tous les organisation du depot par clé
 $app->get(    '/organisation/:id/',                  '_organisation_view');               // affiche une organisation du depot
-$app->post(   '/organisation/',                  	 '_organisation_add');                // ajoute une organisation dans le depot 
+
 
 
 
@@ -141,9 +141,6 @@ function _organisation_view($id){
 	exit;	
 }
 
-function _organisation_add(){
-
-}
 
 
 

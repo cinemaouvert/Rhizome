@@ -42,6 +42,7 @@ function _resolver_resources_all($resources){
 
 }
 
+
 function _resolver_resources_all_by_key($resources,$key){
 	
 	// initialisation des variables et fonctions

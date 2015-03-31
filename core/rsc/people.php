@@ -3,7 +3,7 @@
 $app->get(    '/peoples/',                   '_peoples_list');         	   // affiche toutes les personnes du depot
 $app->get(    '/peoples/:key/',              '_peoples_list_by_key');      // affiche toutes les personnes du depot par clé
 $app->get(    '/people/:id/',                '_people_view');              // affiche une personne du depot
-$app->post(   '/people/',                  	 '_people_add');               // ajoute une personne sur le depot
+
 
 
 
@@ -134,6 +134,3 @@ function _people_view($id){
 	echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
 }
 
-function _people_add(){
-
-}
