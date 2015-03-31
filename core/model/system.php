@@ -26,4 +26,13 @@
 			
 			return $array;
 		}
+
+		public function _get_http_response_code($url) { // Renvoie le code erreur http d'une url.
+			if (filter_var($url, FILTER_VALIDATE_URL)) {
+			    $headers = get_headers($url);
+		    	return substr($headers[0], 9, 3);
+			} else {
+			    return '404';
+			}    
+		}
 	}
