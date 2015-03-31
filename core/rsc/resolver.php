@@ -1,10 +1,10 @@
 <?php
 
-$app->get(    '/resolver/:resources/',                    '_resolver_resources_all');         			// affiche toutes les ressource d'un type du resolver
-$app->get(    '/resolver/:resources/:key/',               '_resolver_resources_all_by_key');            // affiche toutes les ressource d'un type par clé utilisateur du resolver
+$app->get(    '/resolver/:resource/',                   	 '_resolver_resource_all');         			// affiche toutes les ressource d'un type du resolver
+$app->get(    '/resolver/:resource/key/:key/',               '_resolver_resource_all_by_key');            // affiche toutes les ressource d'un type par clé utilisateur du resolver
 
 
-function _resolver_resources_all($resources){
+function _resolver_resource_all($resource){
 	
 	// initialisation des variables et fonctions
 	$system = new System();
@@ -15,9 +15,9 @@ function _resolver_resources_all($resources){
 	$adress_resolver = $ini_array['DEPOT']['local'];
 
 	// On va chercher dans le depot local en premier
-    if($system->_get_http_response_code($adress_resolver.$resources.'/') != "404"){
+    if($system->_get_http_response_code($adress_resolver.'resource/'.$resource.'/') != "404"){
     	$context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
-    	$result1 = file_get_contents($adress_resolver.$resources.'/',false,$context);
+    	$result1 = file_get_contents($adress_resolver.'resource/'.$resource.'/',false,$context);
     	$result1 = json_decode($result1, true);
     	$result = array_merge($result, $result1);
     }
@@ -25,9 +25,9 @@ function _resolver_resources_all($resources){
     // On va chercher dans les différents depot du resolver par la suite
 	foreach($ini_array['RESOLVER HOST'] as $row) {
 		$adress_resolver = $row;
-		if($system->_get_http_response_code($adress_resolver.$resources.'/') != "404"){
+		if($system->_get_http_response_code($adress_resolver.'resource/'.$resource.'/') != "404"){
 			$context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
-		    $result1 = file_get_contents($adress_resolver.$resources.'/',false,$context);
+		    $result1 = file_get_contents($adress_resolver.'resource/'.$resource.'/',false,$context);
 		    $result1 = json_decode($result1, true);
 		    $result = array_merge($result, $result1);
 		}
@@ -43,7 +43,7 @@ function _resolver_resources_all($resources){
 }
 
 
-function _resolver_resources_all_by_key($resources,$key){
+function _resolver_resource_all_by_key($resource,$key){
 	
 	// initialisation des variables et fonctions
 	$system = new System();
@@ -54,9 +54,9 @@ function _resolver_resources_all_by_key($resources,$key){
 	$adress_resolver = $ini_array['DEPOT']['local'];
 
 	// On va chercher dans le depot local en premier
-    if($system->_get_http_response_code($adress_resolver.$resources.'/'.$key) != "404"){
+    if($system->_get_http_response_code($adress_resolver.'resource/'.$resource.'/key/'.$key) != "404"){
     	$context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
-    	$result1 = file_get_contents($adress_resolver.$resources.'/'.$key,false,$context);
+    	$result1 = file_get_contents($adress_resolver.'resource/'.$resource.'/key/'.$key,false,$context);
     	$result1 = json_decode($result1, true);
     	$result = array_merge($result, $result1);
     }
@@ -64,9 +64,9 @@ function _resolver_resources_all_by_key($resources,$key){
     // On va chercher dans les différents depot du resolver par la suite
 	foreach($ini_array['RESOLVER HOST'] as $row) {
 		$adress_resolver = $row;
-		if($system->_get_http_response_code($adress_resolver.$resources.'/'.$key) != "404"){
+		if($system->_get_http_response_code($adress_resolver.'resource/'.$resource.'/key/'.$key) != "404"){
 			$context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
-		    $result1 = file_get_contents($adress_resolver.$resources.'/'.$key,false,$context);
+		    $result1 = file_get_contents($adress_resolver.'resource/'.$resource.'/key/'.$key,false,$context);
 		    $result1 = json_decode($result1, true);
 		    $result = array_merge($result, $result1);
 		}
