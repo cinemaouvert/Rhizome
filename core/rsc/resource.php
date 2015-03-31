@@ -141,7 +141,7 @@ function _attachment_view($id){
 		$result['_api_rsc']['_depot'] = $ini_array['DEPOT']['local'];
 
 		// Lien vers la ressource
-		$result['href'] = base64_encode($ini_array['DEPOT']['local'].'depot/attachment/'.$id);
+		$result['data'] = base64_encode(file_get_contents('depot/attachment/'.$id));
 
 		echo json_encode($result); // Envoi de la réponse
 	} else {
