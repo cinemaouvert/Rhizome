@@ -5,15 +5,17 @@ $app->get(    '/resource/:resource/key/:key/',       	 '_resource_list_by_key');
 $app->get(    '/resource/:resource/id/:id/',             '_resource_view');          		  // affiche une resource sur le depot
 
 
-
-
 function _resource_list($resource){
 
+	// initialisation des variables et fonctions
 	$system = new System();
 	$result = [];
 	$i = 0;
+
 	// Analyse avec sections de depot.ini .
 	$ini_array = parse_ini_file('depot/depot.ini', true);
+
+	// On verifie si le dossier/ressource existe puis on affiche les informations
 	if(file_exists("depot/$resource")){
 		if($dir = opendir("depot/$resource")){
 			while(false !== ($file = readdir($dir))){
@@ -47,11 +49,15 @@ function _resource_list($resource){
 
 function _resource_list_by_key($resource, $key){
 
+	// initialisation des variables et fonctions
 	$system = new System();
 	$result = [];
 	$i = 0;
+
 	// Analyse avec sections de depot.ini .
 	$ini_array = parse_ini_file('depot/depot.ini', true);
+
+	// On verifie si le dossier/ressource existe puis on affiche les informations
 	if(file_exists("depot/$resource")){
 		if($dir = opendir("depot/$resource")){
 			while(false !== ($file = readdir($dir))){
@@ -86,12 +92,11 @@ function _resource_list_by_key($resource, $key){
 }
 
 function _resource_view($resource, $id){
+
 	if($resource == "attachment") _attachment_view($id);
 	else{
 		$ini_array = parse_ini_file('depot/depot.ini', true);
 		if(file_exists('depot/'.$resource.'/'.$id.'.json')){
-
-
 
 			// Traitement resource
 			$system = new System();
@@ -116,9 +121,9 @@ function _resource_view($resource, $id){
 			//suppression _api_key_password
 			unset($result1['_api_key_password']);
 
+			// fusion et affichage
 			$result = array_merge($result1, $result);
 			echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
-
 		} else {
 		    $app = \Slim\Slim::getInstance();
 		    $app->halt(404);
@@ -126,15 +131,15 @@ function _resource_view($resource, $id){
 		exit(0);
 	}
 	
-
 }
 
 
 function _attachment_view($id){
+
 	$ini_array = parse_ini_file('depot/depot.ini', true);
 
 	if (file_exists('depot/attachment/'.$id)) {
-
+		
 		// Identifiant resource
 	    $result['_api_rsc']['_name'] = 'attachment';
 		$result['_api_rsc']['_id'] = $id;
@@ -142,11 +147,11 @@ function _attachment_view($id){
 
 		// Lien vers la ressource
 		$result['data'] = base64_encode(file_get_contents('depot/attachment/'.$id));
-
 		echo json_encode($result); // Envoi de la réponse
 	} else {
 	    $app = \Slim\Slim::getInstance();
 	    $app->halt(404);
 	}
-	exit(0);	
+	exit(0);
+
 }

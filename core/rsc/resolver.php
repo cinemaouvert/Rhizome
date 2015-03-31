@@ -5,7 +5,7 @@ $app->get(    '/resolver/:resource/key/:key/',               '_resolver_resource
 
 
 function _resolver_resource_all($resource){
-	
+
 	// initialisation des variables et fonctions
 	$system = new System();
 	$result = [];
@@ -44,7 +44,7 @@ function _resolver_resource_all($resource){
 
 
 function _resolver_resource_all_by_key($resource,$key){
-	
+
 	// initialisation des variables et fonctions
 	$system = new System();
 	$result = [];
@@ -78,5 +78,5 @@ function _resolver_resource_all_by_key($resource,$key){
 		$app = \Slim\Slim::getInstance();
 	    $app->halt(404);
 	}
+	
 }
-
