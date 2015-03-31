@@ -33,11 +33,11 @@
 				},
 			"3" : 
 				{ 
-					"function" : "Autor",
-					"name"	: "MouTeki TesOu",
+					"function" : "Productor",
+					"name"	: "No name",
 					"_api_rsc_link" : 
 						{
-							"_name" : "people",
+							"_name" : "organisation",
 							"_id" : "3",	
 							"_depot" : "local"
 						}
