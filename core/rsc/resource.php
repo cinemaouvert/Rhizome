@@ -13,7 +13,7 @@ function _resource_list($resource){
 	$result = [];
 	$i = 0;
 	// Analyse avec sections de depot.ini .
-	$ini_array = parse_ini_file('depot.ini', true);
+	$ini_array = parse_ini_file('depot/depot.ini', true);
 	if(file_exists("depot/$resource")){
 		if($dir = opendir("depot/$resource")){
 			while(false !== ($file = readdir($dir))){
@@ -51,7 +51,7 @@ function _resource_list_by_key($resource, $key){
 	$result = [];
 	$i = 0;
 	// Analyse avec sections de depot.ini .
-	$ini_array = parse_ini_file('depot.ini', true);
+	$ini_array = parse_ini_file('depot/depot.ini', true);
 	if(file_exists("depot/$resource")){
 		if($dir = opendir("depot/$resource")){
 			while(false !== ($file = readdir($dir))){
@@ -88,7 +88,7 @@ function _resource_list_by_key($resource, $key){
 function _resource_view($resource, $id){
 	if($resource == "attachment") _attachment_view($id);
 	else{
-		$ini_array = parse_ini_file('depot.ini', true);
+		$ini_array = parse_ini_file('depot/depot.ini', true);
 		if(file_exists('depot/'.$resource.'/'.$id.'.json')){
 
 
@@ -131,7 +131,7 @@ function _resource_view($resource, $id){
 
 
 function _attachment_view($id){
-	$ini_array = parse_ini_file('depot.ini', true);
+	$ini_array = parse_ini_file('depot/depot.ini', true);
 
 	if (file_exists('depot/attachment/'.$id)) {
 
@@ -141,7 +141,7 @@ function _attachment_view($id){
 		$result['_api_rsc']['_depot'] = $ini_array['DEPOT']['local'];
 
 		// Lien vers la ressource
-		$result['href'] = $ini_array['DEPOT']['local'].'depot/attachment/'.$id;
+		$result['href'] = base64_encode($ini_array['DEPOT']['local'].'depot/attachment/'.$id);
 
 		echo json_encode($result); // Envoi de la réponse
 	} else {

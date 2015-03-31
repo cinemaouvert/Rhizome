@@ -10,7 +10,7 @@ $app->get(    '/depot/resource/:resource/',         '_depot_resource');        /
 function _depot(){
 
 	// Analyse avec sections de depot.ini .
-	$ini_array = parse_ini_file('depot.ini', true);
+	$ini_array = parse_ini_file('depot/depot.ini', true);
 	echo json_encode($ini_array); // Envoi de la réponse
 
 }
@@ -26,7 +26,7 @@ function _depot_version(){
 function _depot_option(){
 
 	// Analyse avec sections de depot.ini .
-	$ini_array = parse_ini_file('depot.ini', true);
+	$ini_array = parse_ini_file('depot/depot.ini', true);
 	echo json_encode($ini_array['OPTION']); // Envoi de la réponse
 
 }
@@ -34,7 +34,7 @@ function _depot_option(){
 function _depot_resolver(){
 
 	// Analyse avec sections de depot.ini .
-	$ini_array = parse_ini_file('depot.ini', true);
+	$ini_array = parse_ini_file('depot/depot.ini', true);
 	echo json_encode($ini_array['RESOLVER HOST']); // Envoi de la réponse
 
 }

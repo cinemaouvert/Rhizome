@@ -11,7 +11,7 @@ function _resolver_resource_all($resource){
 	$result = [];
 
 	// Analyse avec sections de depot.ini .
-	$ini_array = parse_ini_file('depot.ini', true);
+	$ini_array = parse_ini_file('depot/depot.ini', true);
 	$adress_resolver = $ini_array['DEPOT']['local'];
 
 	// On va chercher dans le depot local en premier
@@ -50,7 +50,7 @@ function _resolver_resource_all_by_key($resource,$key){
 	$result = [];
 
 	// Analyse avec sections de depot.ini .
-	$ini_array = parse_ini_file('depot.ini', true);
+	$ini_array = parse_ini_file('depot/depot.ini', true);
 	$adress_resolver = $ini_array['DEPOT']['local'];
 
 	// On va chercher dans le depot local en premier
