@@ -10,7 +10,6 @@ function _resource_list($resource){
 
 	// initialisation des variables et fonctions
 	$system = new System();
-	$result = [];
 	$i = 0;
 
 	// Analyse avec sections de depot.ini .
@@ -19,15 +18,16 @@ function _resource_list($resource){
 	// On verifie si le dossier/ressource existe puis on affiche les informations
 	if(file_exists("depot/$resource")){
 		if($dir = opendir("depot/$resource")){
-			$list_rsc = glob("depot/$resource/*.json");
+			$list_rsc = glob("depot/$resource/*.json"); // On va chercher toutes les ressources dans le fichier ressource désigné par $ressource
+			// on trie la liste de ressource par date plus récente
 			usort($list_rsc, function($a, $b) {
 			    return filemtime($a) < filemtime($b);
 			});
-			foreach($list_rsc as &$value) {
+			foreach($list_rsc as &$value) { // On ne garde que l'id de la ressource.
 				$value = str_replace("depot/$resource/", "", $value);
 				$value = str_replace(".json", "", $value);
 			}
-			foreach($list_rsc as &$value) {
+			foreach($list_rsc as &$value) { // on  utilise les list d'id de ressource pour contacter l'api et lister les détails de chaque ressource
 				$depot = $ini_array['DEPOT']['local'];
 				$id = $value;
 				if($system->_get_http_response_code($depot.'resource/'.$resource.'/id/'.$id) != "404"){
@@ -58,7 +58,6 @@ function _resource_list_by_key($resource, $key){
 
 	// initialisation des variables et fonctions
 	$system = new System();
-	$result = [];
 	$i = 0;
 
 	// Analyse avec sections de depot.ini .
@@ -67,15 +66,16 @@ function _resource_list_by_key($resource, $key){
 	// On verifie si le dossier/ressource existe puis on affiche les informations
 	if(file_exists("depot/$resource")){
 		if($dir = opendir("depot/$resource")){
-			$list_rsc = glob("depot/$resource/*.json");
+			$list_rsc = glob("depot/$resource/*.json"); // On va chercher toutes les ressources dans le fichier ressource désigné par $ressource
+			// on trie la liste de ressource par date plus récente
 			usort($list_rsc, function($a, $b) {
 			    return filemtime($a) < filemtime($b);
 			});
-			foreach($list_rsc as &$value) {
+			foreach($list_rsc as &$value) { // On ne garde que l'id de la ressource.
 				$value = str_replace("depot/$resource/", "", $value);
 				$value = str_replace(".json", "", $value);
 			}
-			foreach($list_rsc as &$value) {
+			foreach($list_rsc as &$value) { // on  utilise les list d'id de ressource pour contacter l'api et lister les détails de chaque ressource
 				$depot = $ini_array['DEPOT']['local'];
 				$id = $value;
 				if($system->_get_http_response_code($depot.'resource/'.$resource.'/id/'.$id) != "404"){
@@ -174,7 +174,6 @@ function _resource_list_by_search($resource, $search, $value){
 	// initialisation des variables et fonctions
 	$value_search = $value;
 	$system = new System();
-	$result = [];
 	$i = 0;
 
 	// Analyse avec sections de depot.ini .
@@ -183,21 +182,24 @@ function _resource_list_by_search($resource, $search, $value){
 	// On verifie si le dossier/ressource existe puis on affiche les informations
 	if(file_exists("depot/$resource")){
 		
-		$list_rsc = glob("depot/$resource/*.json");
+		$list_rsc = glob("depot/$resource/*.json"); // On va chercher toutes les ressources dans le fichier ressource désigné par $ressource
+		// on trie la liste de ressource par date plus récente
 		usort($list_rsc, function($a, $b) {
 		    return filemtime($a) < filemtime($b);
 		});
-		foreach($list_rsc as &$value) {
+		foreach($list_rsc as &$value) { // On ne garde que l'id de la ressource.
 			$value = str_replace("depot/$resource/", "", $value);
 			$value = str_replace(".json", "", $value);
 		}
-		foreach($list_rsc as &$value) {
+		foreach($list_rsc as &$value) { // on  utilise les list d'id de ressource pour contacter l'api et lister les détails de chaque ressource
 			$depot = $ini_array['DEPOT']['local'];
 			$id = $value;
 			if($system->_get_http_response_code($depot.'resource/'.$resource.'/id/'.$id) != "404"){
 				$context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
 			    $result1 = file_get_contents($depot.'resource/'.$resource.'/id/'.$id,false,$context);
 			    $result1 = json_decode($result1, true);
+
+			    // on trie par rapport à search/value
 			    if($result1[$search] == $value_search){
 			    	$result[$i] = $result1;
 			    	$i++;
