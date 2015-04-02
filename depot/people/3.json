@@ -1,18 +1,24 @@
 {
 	"_api_key_user" : "1234",
 	"_api_key_password" : "0000",
-	"first_name": "MouTeki",
-	"last_name": "TesOu",
-	"movies_participate" : 
+	"_api_data" : 
+	{
+		"1" : 
 		{
-			"1" : 
+			"first_name": "MouTeki",
+			"last_name": "TesOu",
+			"movies_participate" : 
 				{
-					"_api_rsc_link" : 
+					"1" : 
 						{
-							"_name" : "movie",
-							"_id" : "1",
-							"_depot" : "local"		
+							"_api_rsc_link" : 
+								{
+									"_name" : "movie",
+									"_id" : "1",
+									"_depot" : "local"		
+								}
 						}
 				}
 		}
+	}
 }

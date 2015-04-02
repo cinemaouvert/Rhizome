@@ -1,6 +1,12 @@
 {
 	"_api_key_user" : "1234",
 	"_api_key_password" : "0000",
-	"name": "No name 2",
-	"function": "Sedentary theater"
+	"_api_data" : 
+	{
+		"1" : 
+		{
+			"name": "No name 2",
+			"function": "Sedentary theater"
+		}
+	}
 }
