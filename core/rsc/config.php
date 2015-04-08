@@ -21,7 +21,6 @@ function _config(){
 	else{
 		$app->response->redirect($app->urlFor('install'), 303);
 	}
-	
 }
 
 function _config_home(){

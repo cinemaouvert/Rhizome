@@ -6,7 +6,7 @@
                 
             </div>
             <div class="large-3 columns">
-                <div class=" headings" style=" margin-top:-0.9rem; margin-bottom:1.5rem; text-align:right"><a href="" class="color-white"> Se deconnecter</a></div> 
+                <div class=" headings" style=" margin-top:-0.9rem; margin-bottom:1.5rem; text-align:right"><a href="<?= $app->urlFor('logout'); ?>" class="color-white"> Se deconnecter</a></div> 
                 
             </div>
         </div>

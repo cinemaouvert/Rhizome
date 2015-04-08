@@ -27,7 +27,7 @@
         <div class="row">
             <div class="large-6 large-centered columns">
                 <div id="sign-up">
-                    <form method="post">
+                    <form method="post" action="<?= $app->urlFor('install_done'); ?>">
                         <h3 class="color-pink">Votre administration</h3>
                         <hr />
                         <label>Login de votre administration</label>
