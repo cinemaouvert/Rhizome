@@ -36,10 +36,20 @@ function _config_install(){
 }
 
 function _config_install_done(){
+	$system = new System();
 	$app = \Slim\Slim::getInstance();
 	$data = $app->request()->post();
 	$path = "../../";
 	if($data['login'] <> null){
+		$url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; 
+        $url = str_replace('install/', '', $url);
+		$depot_array = parse_ini_file('depot/depot.ini', true);
+		$depot_array['DEPOT']['local'] = $url;
+		unlink('depot/depot.ini');
+		$system->_write_ini_file($depot_array, 'depot/depot.ini', true);
+		$config = '<?php define(\'ADMIN_LOGIN\', \''.$data["login"].'\'); define(\'ADMIN_PASSWORD\', \''.$data["password"].'\');';
+		unlink('admin/configuration.php');
+		$system->_write_php_file($config, 'admin/configuration.php');
 		$app->render('install_done.php', array(
 			'app' => $app, 
 			'path' => $path,

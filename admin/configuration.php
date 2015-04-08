@@ -1,5 +1,5 @@
 <?php
 
 	// Configuration du depot 
-define('ADMIN_LOGIN', 'nicoa'); 
-define('ADMIN_PASSWORD', 'joachim');
+	define('ADMIN_LOGIN', ''); 
+	define('ADMIN_PASSWORD', '');
