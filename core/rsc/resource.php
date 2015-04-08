@@ -8,7 +8,9 @@ $app->get(    '/resource/:resource/search/:search/:value',             '_resourc
 
 
 function _resource_list($resource){
-
+	$app = \Slim\Slim::getInstance();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
 	// initialisation des variables et fonctions
 	$system = new System();
 	$i = 0;
@@ -56,7 +58,9 @@ function _resource_list($resource){
 }
 
 function _resource_list_by_key($resource, $key){
-
+	$app = \Slim\Slim::getInstance();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
 	// initialisation des variables et fonctions
 	$system = new System();
 	$i = 0;
@@ -106,7 +110,9 @@ function _resource_list_by_key($resource, $key){
 }
 
 function _resource_view($resource, $id){
-
+	$app = \Slim\Slim::getInstance();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
 	if($resource == "attachment") _attachment_view($id);
 	else{
 		$ini_array = parse_ini_file('depot/depot.ini', true);
@@ -155,7 +161,9 @@ function _resource_view($resource, $id){
 }
 
 function _attachment_view($id){
-
+	$app = \Slim\Slim::getInstance();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
 	$ini_array = parse_ini_file('depot/depot.ini', true);
 
 	if (file_exists('depot/attachment/'.$id)) {
@@ -177,7 +185,9 @@ function _attachment_view($id){
 }
 
 function _resource_history_view($resource, $id){
-
+	$app = \Slim\Slim::getInstance();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
 	if($resource == "attachment") _attachment_view($id);
 	else{
 		$ini_array = parse_ini_file('depot/depot.ini', true);
@@ -222,7 +232,9 @@ function _resource_history_view($resource, $id){
 }
 
 function _resource_list_by_search($resource, $search, $value){
-
+	$app = \Slim\Slim::getInstance();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
 	// initialisation des variables et fonctions
 	$value_search = $value;
 	$system = new System();

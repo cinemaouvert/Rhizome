@@ -5,7 +5,9 @@ $app->get(    '/resolver/:resource/key/:key/',               '_resolver_resource
 
 
 function _resolver_resource_all($resource){
-
+	$app = \Slim\Slim::getInstance();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
 	// initialisation des variables et fonctions
 	$system = new System();
 	$result = [];
@@ -44,7 +46,9 @@ function _resolver_resource_all($resource){
 
 
 function _resolver_resource_all_by_key($resource,$key){
-
+	$app = \Slim\Slim::getInstance();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
 	// initialisation des variables et fonctions
 	$system = new System();
 	$result = [];

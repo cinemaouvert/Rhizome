@@ -1,11 +1,21 @@
 <?php
 
+$app->get(    '/',                    				'_index');         		   // affiche index
 $app->get(    '/depot/',                    		'_depot');         		   // affiche information du depot
 $app->get(    '/depot/version/',                    '_depot_version');         // affiche version du depot
 $app->get(    '/depot/option/',                     '_depot_option');          // affiche option du depot
 $app->get(    '/depot/resolver/',                   '_depot_resolver');        // affiche tous les depots qui sont connecte à ce depot
 $app->get(    '/depot/resource/:resource/',         '_depot_resource');        // affiche les champs d'une ressource
 
+
+function _index(){
+
+	$app = \Slim\Slim::getInstance();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
+	else $app->halt(400);
+
+}
 
 function _depot(){
 
