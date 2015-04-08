@@ -13,7 +13,7 @@ function _index(){
 	$app = \Slim\Slim::getInstance();
 	$depot_array = parse_ini_file('depot/depot.ini', true);
 	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
-	else $app->halt(400);
+	else $app->halt(404);
 
 }
 
