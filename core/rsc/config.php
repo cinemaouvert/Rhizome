@@ -42,7 +42,7 @@ function _config_install_done(){
 	$path = "../../";
 	if($data['login'] <> null){
 		$url = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; 
-        $url = str_replace('install/', '', $url);
+        $url = str_replace('config/install/', '', $url);
 		$depot_array = parse_ini_file('depot/depot.ini', true);
 		$depot_array['DEPOT']['local'] = $url;
 		unlink('depot/depot.ini');
