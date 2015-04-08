@@ -1,3 +1,4 @@
+<?php $app->render('header.php', array('path' => $path, 'app' => $app)); // load ui ?>
 <div id="additional-info">
         <div class="row">
             <div class="large-6 columns">
@@ -49,11 +50,25 @@
                 <div id="sign-up">
                     <h3 class="color-pink">Liste des depots connectés</h3>
                     <hr />
-                    <label>Nom du depot</label>
-                    <input id="Text1" type="text" />
-                    <label>Adresse http de depot</label>
-                    <input id="Text2" type="password" />
-                    <button class="blue-btn">AJOUTER</button>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Nom</th>
+                          <th>Adresse du depot</th>
+                          <th>Supprimer</th>
+                          <th>Editer</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                    <?php 
+                    foreach ($resolver_list as $key => $value) {
+                        echo '<tr><td>'.$key.'</td> <td>'.$value.'</td> <td style="text-align:center"><a href="">X</a></td> <td style="text-align:center"><a href="">X</a></td></tr>';
+                    } 
+                    ?>
+                        
+                      </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -69,3 +84,4 @@
             </div>
         </div>
     </footer>
+<?php $app->render('footer.php', array('path' => $path, 'app' => $app)); // load ui ?>

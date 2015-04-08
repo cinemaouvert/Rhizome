@@ -35,4 +35,16 @@
 			    return '404';
 			}    
 		}
+
+		public function _rsc_info($adress, $resource, $id){
+		    if($this->_get_http_response_code($adress.'resource/'.$resource.'/id/'.$id) != "404"){
+		    	$context = stream_context_create(array('http' => array('header'=>'Connection: close\r\n')));
+		    	$result = file_get_contents($adress.'resource/'.$resource.'/id/'.$id,false,$context);
+		    	$result = json_decode($result, true);
+		    	return $result;
+		    }
+		    else{
+		    	return false;
+		    }
+		}
 	}

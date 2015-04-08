@@ -1,3 +1,4 @@
+<?php $app->render('header.php', array('path' => $path, 'app' => $app)); // load ui ?>
 <div id="additional-info">
         <div class="row">
             <div class="large-12 columns">
@@ -9,13 +10,15 @@
         <div class="row">
             <div class="large-6 large-centered columns">
                 <div id="sign-up">
-                    <h3 class="color-pink">Connection</h3>
-                    <hr />
-                    <label>Login</label>
-                    <input id="Text1" type="text" />
-                    <label>Mot de passe</label>
-                    <input id="Text2" type="password" />
-                    <button class="blue-btn">SE CONNECTER</button>
+                    <form method="post">
+                        <h3 class="color-pink">Votre administration</h3>
+                        <hr />
+                        <label>Login</label>
+                        <input name="login" type="text" />
+                        <label>Mot de passe</label>
+                        <input name="password" type="password" />
+                        <button class="blue-btn">SE CONNECTER</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -76,3 +79,5 @@
             </div>
         </div>
     </footer>
+
+<?php $app->render('footer.php', array('path' => $path, 'app' => $app)); // load ui ?>
