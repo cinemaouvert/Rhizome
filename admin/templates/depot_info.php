@@ -37,50 +37,19 @@
         <br />
 
         <div class="row">
-            <div class="large-4 columns">
+            <div class="large-12 columns">
                 <div id="sign-up">
-                    <form method="post" action="<?= $app->urlFor('depot_add'); ?>">
-                        <h3 class="color-pink">Ajouter un depot</h3>
-                        <hr />
-                        <label>Nom du depot (nom unique)</label>
-                        <input name="depot_name" type="text" />
-                        <label>Adresse http du depot</label>
-                        <input name="depot_host" type="text" />
-                        <button class="blue-btn">AJOUTER</button>
-                    </form>
-                </div>
-                <br />
-            </div>
-
-            <div class="large-8 columns">
-                <div id="sign-up">
-                    <h3 class="color-pink">Liste des depots connectés</h3>
+                    <h3 class="color-pink">Information sur le depot</h3>
                     <hr />
-                    <?php 
-                    if($resolver_list == null){
-                        echo '<center>Aucun depot connectés</center>';
-                    }else{
-                        echo'<table>
-                          <thead>
-                            <tr>
-                              <th>Nom</th>
-                              <th>Adresse du depot</th>
-                              <th>Supprimer</th>
-                            </tr>
-                          </thead>
-                          <tbody>';
-                            
-                        
-                        foreach ($resolver_list as $key => $value) {
-                            echo '<tr><td>'.$key.'</td> <td>'.$value.'</td> <td style="text-align:center"><a href="resolver/'.$key.'">X</a></td></tr>';
-                        } 
-                        
-                            
-                        echo'</tbody>
-                        </table>';
-                    }
-                    
+                    Adresse du depot : <?= $depot['DEPOT']['local']; ?> <br />
+                    Le depot est en mode : 
+                    <?php if($depot['OPTION']['open'] == 1){
+                        echo 'ouvert';
+                    }else echo "fermé";
+
                     ?>
+                    <br /><br />
+                    Votre depot est en version : <?= $depot['VERSION']['DESCRIPTION']['version']; ?>
                 </div>
             </div>
         </div>

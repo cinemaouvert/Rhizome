@@ -1,12 +1,14 @@
 <?php
 
-$app->get(    '/config/',                    			'_config')->name("login");         		 		 		 	// affiche connexion administration
-$app->post(   '/config/',                    			'_config_home')->name("home");         		    			// verifie l'indentification
-$app->get(    '/config/dashboard/',                    	'_config_dashboard')->name("dashboard");         		 	// affiche le dashboard de l'admin
-$app->get(    '/config/logout/',                    	'_config_logout')->name("logout");         		 			// deconnecte
-$app->get(    '/config/install/',                    	'_config_install')->name("install");        		    	// affiche installation administration
-$app->post(   '/config/install/',                    	'_config_install_done')->name("install_done");        		// affiche installation administration
-$app->post(   '/config/depot/',                    		'_config_depot')->name("depot_add");         		    	// ajoute un depot
+$app->get(    '/config/',                    			'_config')->name("login");         		 		 		 			// affiche connexion administration
+$app->post(   '/config/',                    			'_config_home')->name("home");         		    					// verifie l'indentification
+$app->get(    '/config/dashboard/',                    	'_config_dashboard')->name("dashboard");         		 			// affiche le dashboard de l'admin
+$app->get(    '/config/dashboard/resolver/:resolver/',  '_config_dashboard_resolver')->name("dashboard_resolver");         	// supprime un depot du resolver
+$app->get(    '/config/dashboard/depot/info/',          '_config_dashboard_depot_info')->name("dashboard_depot_info");      // affiche les infos sur le depot dans l'admin
+$app->get(    '/config/logout/',                    	'_config_logout')->name("logout");         		 					// deconnecte
+$app->get(    '/config/install/',                    	'_config_install')->name("install");        		    			// affiche installation administration
+$app->post(   '/config/install/',                    	'_config_install_done')->name("install_done");        				// affiche installation administration
+$app->post(   '/config/depot/',                    		'_config_depot')->name("depot_add");         		    			// ajoute un depot
 
 
 function _config(){
@@ -47,6 +49,33 @@ function _config_dashboard(){
 	else{
 		$app->response->redirect($app->urlFor('login'), 303);
 	}
+}
+
+function _config_dashboard_depot_info(){
+	$app = \Slim\Slim::getInstance();
+	$path = "../../../../";
+	if($_SESSION['login'] == ADMIN_LOGIN and $_SESSION['password'] == ADMIN_PASSWORD){
+		$depot = parse_ini_file('depot/depot.ini', true);
+		$depot['VERSION'] = parse_ini_file('core/core.ini', true);
+		$app->render('depot_info.php', array(
+			'app' => $app, 
+			'path' => $path,
+			'depot' => $depot
+		));
+	}
+	else{
+		$app->response->redirect($app->urlFor('login'), 303);
+	}
+}
+
+function _config_dashboard_resolver($resolver){
+	$system = new System();
+	$app = \Slim\Slim::getInstance();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	unset($depot_array['RESOLVER HOST'][$resolver]);
+	unlink('depot/depot.ini');
+	$system->_write_ini_file($depot_array, 'depot/depot.ini', true);
+	$app->response->redirect($app->urlFor('dashboard'), 303);
 }
 
 function _config_logout(){
