@@ -63,7 +63,7 @@
                     <div class="glyph-icon flaticon-boat5"></div>
                     <h4>Ouvert</h4>
                     <div>
-                        Vous pouvez apporter votre aide dans le développement du CODB via GitHub. <br /><br />
+                        Vous pouvez apporter votre aide dans le développement du CODB via <a href="https://github.com/cinemaouvert/CODB-Depot">GitHub</a>. <br /><br />
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
     <footer>
         <div class="row text-center">
             <div class="large-12 columns">
-                <a href="" >Supporté par le Catalogue Ouvert du Cinéma</a>
+                <a href="http://cinemaouvert.fr/" >Supporté par le Catalogue Ouvert du Cinéma</a>
             </div>
         </div>
     </footer>

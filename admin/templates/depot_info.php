@@ -61,7 +61,7 @@
     <footer>
         <div class="row text-center">
             <div class="large-12 columns">
-                <a href="" >Supporté par le Catalogue Ouvert du Cinéma</a>
+                <a href="http://cinemaouvert.fr/" >Supporté par le Catalogue Ouvert du Cinéma</a>
             </div>
         </div>
     </footer>
