@@ -37,7 +37,8 @@ function _config_home(){
 function _config_dashboard(){
 	$app = \Slim\Slim::getInstance();
 	$path = "../../";
-	if($_SESSION['login'] == ADMIN_LOGIN and $_SESSION['password'] == ADMIN_PASSWORD){
+
+	if(isset($_SESSION['login']) and $_SESSION['login'] == ADMIN_LOGIN and isset($_SESSION['password']) and $_SESSION['password'] == ADMIN_PASSWORD){
 		$resolver_list = parse_ini_file('depot/depot.ini', true);
 		$resolver_list = $resolver_list['RESOLVER HOST'];
 		$app->render('home.php', array(
@@ -54,7 +55,7 @@ function _config_dashboard(){
 function _config_dashboard_depot_info(){
 	$app = \Slim\Slim::getInstance();
 	$path = "../../../../";
-	if($_SESSION['login'] == ADMIN_LOGIN and $_SESSION['password'] == ADMIN_PASSWORD){
+	if(isset($_SESSION['login']) and $_SESSION['login'] == ADMIN_LOGIN and isset($_SESSION['password']) and $_SESSION['password'] == ADMIN_PASSWORD){
 		$depot = parse_ini_file('depot/depot.ini', true);
 		$depot['VERSION'] = parse_ini_file('core/core.ini', true);
 		$app->render('depot_info.php', array(
@@ -71,11 +72,16 @@ function _config_dashboard_depot_info(){
 function _config_dashboard_resolver($resolver){
 	$system = new System();
 	$app = \Slim\Slim::getInstance();
-	$depot_array = parse_ini_file('depot/depot.ini', true);
-	unset($depot_array['RESOLVER HOST'][$resolver]);
-	unlink('depot/depot.ini');
-	$system->_write_ini_file($depot_array, 'depot/depot.ini', true);
-	$app->response->redirect($app->urlFor('dashboard'), 303);
+	if(isset($_SESSION['login']) and $_SESSION['login'] == ADMIN_LOGIN and isset($_SESSION['password']) and $_SESSION['password'] == ADMIN_PASSWORD){
+		$depot_array = parse_ini_file('depot/depot.ini', true);
+		unset($depot_array['RESOLVER HOST'][$resolver]);
+		unlink('depot/depot.ini');
+		$system->_write_ini_file($depot_array, 'depot/depot.ini', true);
+		$app->response->redirect($app->urlFor('dashboard'), 303);
+	}
+	else{
+		$app->response->redirect($app->urlFor('login'), 303);
+	}
 }
 
 function _config_logout(){
@@ -128,10 +134,15 @@ function _config_install_done(){
 function _config_depot(){
 	$system = new System();
 	$app = \Slim\Slim::getInstance();
-	$data = $app->request()->post();
-	$depot_array = parse_ini_file('depot/depot.ini', true);
-	$depot_array['RESOLVER HOST'][$data['depot_name']] = $data['depot_host'];
-	unlink('depot/depot.ini');
-	$system->_write_ini_file($depot_array, 'depot/depot.ini', true);
-	$app->response->redirect($app->urlFor('dashboard'), 303);
+	if(isset($_SESSION['login']) and $_SESSION['login'] == ADMIN_LOGIN and isset($_SESSION['password']) and $_SESSION['password'] == ADMIN_PASSWORD){
+		$data = $app->request()->post();
+		$depot_array = parse_ini_file('depot/depot.ini', true);
+		$depot_array['RESOLVER HOST'][$data['depot_name']] = $data['depot_host'];
+		unlink('depot/depot.ini');
+		$system->_write_ini_file($depot_array, 'depot/depot.ini', true);
+		$app->response->redirect($app->urlFor('dashboard'), 303);
+	}
+	else{
+		$app->response->redirect($app->urlFor('login'), 303);
+	}
 }
