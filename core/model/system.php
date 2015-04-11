@@ -11,6 +11,18 @@
 			return $string;
 		}
 
+		public function _filter_json_post($string)
+		{
+			$ini_array = parse_ini_file('depot/depot.ini', true); // ouverture du depot.ini pour aller chercher les correspondances
+			$value = str_replace("/", "\/", $ini_array['DEPOT']['local']);
+			$string = str_replace('"_depot":"'.$value.'"','"_depot":"local"', $string);
+			foreach($ini_array['RESOLVER HOST'] as $key => $value) {
+				$value = str_replace("/", "\/", $value);
+				$string = str_replace('"_depot":"'.$value.'"', '"_depot":"'.$key.'"', $string);
+			}
+			return $string;
+		}
+
 		public function _wiki($array){
 			if(isset($array['_api_key_user'])){
 				if($array['_api_key_user'] <> ""){
@@ -91,6 +103,14 @@
 		}
 
 		public function _write_php_file($content, $handle){
+			$fp = fopen($handle, 'w');
+		    $success = fwrite($fp, $content);
+		    fclose($fp); 
+
+		    return $success; 
+		}
+
+		public function _write_json_file($content, $handle){
 			$fp = fopen($handle, 'w');
 		    $success = fwrite($fp, $content);
 		    fclose($fp); 

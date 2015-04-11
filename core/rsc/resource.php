@@ -5,6 +5,7 @@ $app->get(    '/resource/:resource/key/:key/',       	 			   '_resource_list_by_
 $app->get(    '/resource/:resource/id/:id/',             			   '_resource_view');          		    // affiche une resource sur le depot
 $app->get(    '/resource/:resource/history/id/:id',             	   '_resource_history_view');           // affiche une resource sur le depot AVEC l'historique d'édition
 $app->get(    '/resource/:resource/search/:search/:value',             '_resource_list_by_search');         // affiche une liste de resource via une recherche sur le depot
+$app->post(   '/resource/:resource/',             		 			   '_resource_add');         	  	  	// affiche une liste de ressource du depot
 
 
 function _resource_list($resource){
@@ -317,6 +318,34 @@ function _resource_list_by_search($resource, $search, $value){
 			$app = \Slim\Slim::getInstance();
 		    $app->halt(404);
 		}
+	}
+	else {
+	    $app = \Slim\Slim::getInstance();
+	    $app->halt(404);
+	}
+	exit(0);
+
+}
+
+function _resource_add($resource){
+
+	$app = \Slim\Slim::getInstance();
+	$data = $app->request()->post();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	// initialisation des variables et fonctions
+	$system = new System();
+	$id = uniqid();
+	// On verifie si le dossier/ressource existe puis on affiche les informations
+	if(file_exists("depot/$resource")){
+		$data = $app->request()->getBody();
+		$data = json_decode($data, true);
+		$data_cache = $data['_api_data'];
+		unset($data['_api_data']);
+		$data['_api_data']['1'] = $data_cache;
+		$data['_api_data']['1']['_edited_on'] = date("m/d/Y H:i:s");
+		$data = $system->_filter_json_post(json_encode($data));
+		$system->_write_json_file($data, "depot/$resource/$id.json");
+		_resource_view($resource,$id);
 	}
 	else {
 	    $app = \Slim\Slim::getInstance();
