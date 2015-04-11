@@ -32,7 +32,7 @@
 
             <div class="row">
                 <div class="large-12 columns">
-                    <h5 class="color-black" style="text-align:justify; line-height: 27px;">Le CODB est une base de données de stockages d'informations relatives à des oeuvres audiovisuelles.
+                    <h5 class="color-black" style="text-align:justify; line-height: 27px;">Le CODB est une base de données de stockage d'informations relatives à des oeuvres audiovisuelles.
                     Le but est de fournir une architecture décentralisée et simple d'accès aux détenteurs de droits, aux diffuseurs et enthousiastes pour répertorier les informations relatives à des oeuvres audiovisuelles sous licence libre ou indépendantes.</h5>            
                 </div>
             </div>

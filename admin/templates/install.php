@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="large-12 columns">
                     <h5 class="color-black" style="text-align:center; line-height: 27px;">
-                        Remplissez ce formulaire qui va ce charger de créer la configuration de votre codb.
+                        Remplissez ce formulaire qui va se charger de créer la configuration de votre codb.
                     </h5>            
                 </div>
             </div>
