@@ -307,12 +307,19 @@ function _resource_add($resource){
 	$id = uniqid();
 	// On verifie si le dossier/ressource existe puis on affiche les informations
 	if(file_exists("depot/$resource")){
+
 		$data = $app->request()->getBody();
 		$data = json_decode($data, true);
+		if(empty($data['_api_key_user']) or empty($data['_api_key_password']) or empty($data['_api_data'])){
+			$app = \Slim\Slim::getInstance();
+	    	$app->halt(406);
+	    	exit(0);
+		}
 		$data_cache = $data['_api_data'];
 		unset($data['_api_data']);
 		$data['_api_data']['1'] = $data_cache;
 		$data['_api_data']['1']['_edited_on'] = date("m/d/Y H:i:s");
+		
 		$data = $system->_filter_json_post(json_encode($data));
 		$system->_write_json_file($data, "depot/$resource/$id.json");
 		_resource_view($resource,$id);
