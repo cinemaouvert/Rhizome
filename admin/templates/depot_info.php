@@ -37,19 +37,60 @@
         <br />
 
         <div class="row">
-            <div class="large-12 columns">
+            <div class="large-4 columns">
+                <div id="sign-up">
+                    <h3 class="color-pink">Clés utilisateurs autorisée</h3>
+                    <hr />
+                    <form method="post" action="<?= $app->urlFor('access_add'); ?>">
+                        <label>Clé utilisateur (Clé unique)</label>
+                        <input name="key_user" type="text" />
+                        <label>Clé d'access (Clé unique)</label>
+                        <input name="key_access" type="text" />
+                        <button class="blue-btn">AJOUTER UNE CLÉ</button>
+                    </form>
+                </div>
+            </div>
+            <div class="large-8 columns">
                 <div id="sign-up">
                     <h3 class="color-pink">Information sur le depot</h3>
                     <hr />
-                    Adresse du depot : <?= $depot['DEPOT']['local']; ?> <br />
+                    Adresse du depot : <?= $depot['DEPOT']['local']; ?> <br /><br />
                     Le depot est en mode : 
                     <?php if($depot['OPTION']['open'] == 1){
-                        echo 'ouvert';
-                    }else echo "fermé";
-
+                        echo 'ouvert <a href="'.$app->urlFor('access_change').'">( Passer le depot en mode fermé ) </a>';
+                    }else echo 'fermé <a href="'.$app->urlFor('access_change').'">( Passer le depot en mode ouvert )</a>';
+                       
                     ?>
                     <br /><br />
                     Votre depot est en version : <?= $depot['VERSION']['DESCRIPTION']['version']; ?>
+                </div>
+                <br />
+                <div id="sign-up">
+                    <h3 class="color-pink">Ajouté clé utilisateurs</h3>
+                    <hr />
+                    
+                    <?php if($access_list == null){
+                        echo ' <center>Aucun clé ajouté</center>';
+                    }else{
+                        echo'
+                        
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Clé utilisateur</th>
+                              <th>Clé d\'access</th>
+                              <th>Supprimer la clé</th>
+                            </tr>
+                          </thead>
+                          <tbody>';
+                        foreach ($access_list as $key => $value) {
+                            echo '<tr><td>'.$key.'</td> <td>'.$value.'</td> <td style="text-align:center"><a href="access/'.$key.'">X</a></td></tr>';
+                        } 
+                        echo'</tbody>
+                        </table>';
+                    }
+                    ?>
+                    
                 </div>
             </div>
         </div>
