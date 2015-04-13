@@ -219,11 +219,6 @@ function _resource_list_by_search($resource, $search, $value){
 	// Analyse avec sections de depot.ini .
 	$ini_array = parse_ini_file('depot/depot.ini', true);
 
-	if($resource == "attachment"){
-		$app = \Slim\Slim::getInstance();
-		$app->halt(400);
-	}
-
 	// On verifie si le dossier/ressource existe puis on affiche les informations
 	if(file_exists("depot/$resource")){
 		
