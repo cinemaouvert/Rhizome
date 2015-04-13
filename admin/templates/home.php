@@ -40,13 +40,13 @@
             <div class="large-4 columns">
                 <div id="sign-up">
                     <form method="post" action="<?= $app->urlFor('depot_add'); ?>">
-                        <h3 class="color-pink">Ajouter un depot</h3>
+                        <h3 class="color-pink">Depots</h3>
                         <hr />
                         <label>Nom du depot (nom unique)</label>
                         <input name="depot_name" type="text" />
                         <label>Adresse http du depot</label>
                         <input name="depot_host" type="text" />
-                        <button class="blue-btn">AJOUTER</button>
+                        <button class="blue-btn">AJOUTER - MODIFIER</button>
                     </form>
                 </div>
                 <br />

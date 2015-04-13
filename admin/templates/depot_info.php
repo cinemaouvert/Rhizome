@@ -39,14 +39,14 @@
         <div class="row">
             <div class="large-4 columns">
                 <div id="sign-up">
-                    <h3 class="color-pink">Clés utilisateurs autorisée</h3>
+                    <h3 class="color-pink">Clé d'accés</h3>
                     <hr />
                     <form method="post" action="<?= $app->urlFor('access_add'); ?>">
                         <label>Clé utilisateur (Clé unique)</label>
                         <input name="key_user" type="text" />
-                        <label>Clé d'access (Clé unique)</label>
+                        <label>Clé d'accés (Clé unique)</label>
                         <input name="key_access" type="text" />
-                        <button class="blue-btn">AJOUTER UNE CLÉ</button>
+                        <button class="blue-btn">AJOUTER - MODIFIER</button>
                     </form>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 </div>
                 <br />
                 <div id="sign-up">
-                    <h3 class="color-pink">Ajouté clé utilisateurs</h3>
+                    <h3 class="color-pink">Liste clés utilisateurs / clés d'accés</h3>
                     <hr />
                     
                     <?php if($access_list == null){
@@ -78,7 +78,7 @@
                           <thead>
                             <tr>
                               <th>Clé utilisateur</th>
-                              <th>Clé d\'access</th>
+                              <th>Clé d\'accés</th>
                               <th>Supprimer la clé</th>
                             </tr>
                           </thead>
