@@ -322,6 +322,9 @@ function _resource_add($resource){
 			    	$app->halt(401);
 			    	exit(0);
 				}
+				else{
+					unset($data['_api_key_access']);
+				}
 			}
 			else{
 				$app = \Slim\Slim::getInstance();
