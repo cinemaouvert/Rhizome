@@ -114,76 +114,51 @@ function _resource_view($resource, $id){
 	$app = \Slim\Slim::getInstance();
 	$depot_array = parse_ini_file('depot/depot.ini', true);
 	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
-	if($resource == "attachment") _attachment_view($id);
-	else{
-		$ini_array = parse_ini_file('depot/depot.ini', true);
-		if(file_exists('depot/'.$resource.'/'.$id.'.json')){
-
-			// Traitement resource
-			$system = new System();
-			$json = file_get_contents("depot/$resource/$id.json");
-			$result1 = $system->_wiki(json_decode($json, true));
-
-			// Identifiant resource
-			$result['_api_rsc']['_name'] = $resource;
-			$result['_api_rsc']['_id'] = $id;
-			$result['_api_rsc']['_depot'] = $ini_array['DEPOT']['local'];
-			// $result['_api_rsc']['_edited_on'] = date ("m/d/Y H:i:s", filemtime("depot/$resource/$id.json"));
-
-			// Lien api
-			$result['_api_link']['_view']['_href'] = $ini_array['DEPOT']['local'].'resource/'.$resource.'/id/'.$result['_api_rsc']['_id'];
-			$result['_api_link']['_view']['_method'] = 'GET';
-			$result['_api_link']['_view_history']['_href'] = $ini_array['DEPOT']['local'].'resource/'.$resource.'/history/id/'.$result['_api_rsc']['_id'];
-			$result['_api_link']['_view_history']['_method'] = 'GET';
-			$result['_api_link']['_edit']['_href'] = $ini_array['DEPOT']['local'].'resource/'.$resource.'/id/'.$result['_api_rsc']['_id'];
-			$result['_api_link']['_edit']['_method'] = 'PUT';
-			if($result1['_api_key_user'] <> "false") $result['_api_link']['_edit']['_require'] = '_api_key_password';
-			$result['_api_link']['_delete']['_href'] = $ini_array['DEPOT']['local'].'resource/'.$resource.'/id/'.$result['_api_rsc']['_id'];
-			$result['_api_link']['_delete']['_method'] = 'DELETE';
-			if($result1['_api_key_user'] <> "false") $result['_api_link']['_delete']['_require'] = '_api_key_password';
-
-			$count = count($result1['_api_data']);
-			$data = $result1['_api_data'][$count];
-			unset($result1['_api_data']);
-			//suppression _api_key_password
-			unset($result1['_api_key_password']);
-			$result1['_api_data'] = $data;
-
-			// fusion et affichage
-			$result = array_merge($result1, $result);
-			echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
-		} else {
-		    $app = \Slim\Slim::getInstance();
-		    $app->halt(404);
-		}
-		exit(0);
-	}
-	
-}
-
-function _attachment_view($id){
-	$app = \Slim\Slim::getInstance();
-	$depot_array = parse_ini_file('depot/depot.ini', true);
-	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
 	$ini_array = parse_ini_file('depot/depot.ini', true);
+	if(file_exists('depot/'.$resource.'/'.$id.'.json')){
 
-	if (file_exists('depot/attachment/'.$id)) {
-		
+		// Traitement resource
+		$system = new System();
+		$json = file_get_contents("depot/$resource/$id.json");
+		$result1 = $system->_wiki(json_decode($json, true));
+
 		// Identifiant resource
-	    $result['_api_rsc']['_name'] = 'attachment';
+		$result['_api_rsc']['_name'] = $resource;
 		$result['_api_rsc']['_id'] = $id;
 		$result['_api_rsc']['_depot'] = $ini_array['DEPOT']['local'];
+		// $result['_api_rsc']['_edited_on'] = date ("m/d/Y H:i:s", filemtime("depot/$resource/$id.json"));
 
-		// Lien vers la ressource
-		$result['data'] = base64_encode(file_get_contents('depot/attachment/'.$id));
-		echo json_encode($result); // Envoi de la réponse
+		// Lien api
+		$result['_api_link']['_view']['_href'] = $ini_array['DEPOT']['local'].'resource/'.$resource.'/id/'.$result['_api_rsc']['_id'];
+		$result['_api_link']['_view']['_method'] = 'GET';
+		$result['_api_link']['_view_history']['_href'] = $ini_array['DEPOT']['local'].'resource/'.$resource.'/history/id/'.$result['_api_rsc']['_id'];
+		$result['_api_link']['_view_history']['_method'] = 'GET';
+		$result['_api_link']['_edit']['_href'] = $ini_array['DEPOT']['local'].'resource/'.$resource.'/id/'.$result['_api_rsc']['_id'];
+		$result['_api_link']['_edit']['_method'] = 'PUT';
+		if($result1['_api_key_user'] <> "false") $result['_api_link']['_edit']['_require'] = '_api_key_password';
+		$result['_api_link']['_delete']['_href'] = $ini_array['DEPOT']['local'].'resource/'.$resource.'/id/'.$result['_api_rsc']['_id'];
+		$result['_api_link']['_delete']['_method'] = 'DELETE';
+		if($result1['_api_key_user'] <> "false") $result['_api_link']['_delete']['_require'] = '_api_key_password';
+
+		$count = count($result1['_api_data']);
+		$data = $result1['_api_data'][$count];
+		unset($result1['_api_data']);
+		//suppression _api_key_password
+		unset($result1['_api_key_password']);
+		$result1['_api_data'] = $data;
+
+		// fusion et affichage
+		$result = array_merge($result1, $result);
+		echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
 	} else {
 	    $app = \Slim\Slim::getInstance();
 	    $app->halt(404);
 	}
 	exit(0);
 
+	
 }
+
 
 function _resource_history_view($resource, $id){
 	$app = \Slim\Slim::getInstance();
