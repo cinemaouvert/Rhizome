@@ -7,7 +7,7 @@ $app->get(    '/resource/:resource/history/id/:id',             	   '_resource_h
 $app->get(    '/resource/:resource/search/:search/:value',             '_resource_list_by_search');         // affiche une liste de resource via une recherche sur le depot
 $app->post(   '/resource/:resource/',             		 			   '_resource_add');         	  	  	// ajouter une ressource dans le depot
 $app->put(    '/resource/:resource/id/:id',             		 	   '_resource_edit');         	  	  	// editer une ressource dans le depot
-$app->delete(    '/resource/:resource/id/:id',             		 	   '_resource_delete');         	  	// supprimer une ressource dans le depot
+$app->delete( '/resource/:resource/id/:id',             		 	   '_resource_delete');         	  	// supprimer une ressource dans le depot
 
 
 
@@ -161,7 +161,6 @@ function _resource_view($resource, $id){
 
 	
 }
-
 
 function _resource_history_view($resource, $id){
 	$app = \Slim\Slim::getInstance();
