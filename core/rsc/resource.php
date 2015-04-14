@@ -362,10 +362,12 @@ function _resource_edit($resource, $id){
 		$data = $app->request()->getBody();
 		$data = json_decode($data, true);
 		$data_depot = json_decode(file_get_contents("depot/$resource/$id.json"), true);
-		if(empty($data['_api_key_user']) or empty($data['_api_key_password']) or empty($data['_api_data'])){
-			$app = \Slim\Slim::getInstance();
-	    	$app->halt(400);
-	    	exit(0);
+		if($data_depot['_api_key_user'] <> ""){
+			if(empty($data['_api_key_user']) or empty($data['_api_key_password']) or empty($data['_api_data'])){
+				$app = \Slim\Slim::getInstance();
+		    	$app->halt(400);
+		    	exit(0);
+			}
 		}
 		if($depot_array['OPTION']['open'] == "0"){
 			$access_array = parse_ini_file('depot/access.ini', true);
@@ -385,11 +387,16 @@ function _resource_edit($resource, $id){
 		    	exit(0);
 			}
 		}
-		if(("".$data['_api_key_user']."" == "".$data_depot['_api_key_user']."") and ("".$data['_api_key_password']."" == "".$data_depot['_api_key_password']."")){
+		if((("".$data['_api_key_user']."" == "".$data_depot['_api_key_user']."") and ("".$data['_api_key_password']."" == "".$data_depot['_api_key_password']."") or $data_depot['_api_key_user'] == "")){
+			if(isset($data['_api_wiki']) and $data['_api_wiki'] == 1) {
+				$data_depot['_api_key_user'] = "";
+				$data_depot['_api_key_password'] = "";
+			}
 			$data_cache = $data['_api_data'];
 			$i = count($data_depot['_api_data']);
 			$data_depot['_api_data'][$i+1] = $data_cache;
 			$data_depot['_api_data'][$i+1]['_edited_on'] = date("m/d/Y H:i:s");
+			$data_depot['_api_data'][$i+1]['_edited_by'] = $data['_api_key_user'];
 			$data_depot = $system->_filter_json_post(json_encode($data_depot));
 			unlink("depot/$resource/$id.json");
 			$system->_write_json_file($data_depot, "depot/$resource/$id.json");
