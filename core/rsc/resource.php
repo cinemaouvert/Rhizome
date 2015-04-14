@@ -6,7 +6,9 @@ $app->get(    '/resource/:resource/id/:id/',             			   '_resource_view')
 $app->get(    '/resource/:resource/history/id/:id',             	   '_resource_history_view');           // affiche une resource sur le depot AVEC l'historique d'édition
 $app->get(    '/resource/:resource/search/:search/:value',             '_resource_list_by_search');         // affiche une liste de resource via une recherche sur le depot
 $app->post(   '/resource/:resource/',             		 			   '_resource_add');         	  	  	// ajouter une ressource dans le depot
-$app->put(    '/resource/:resource/id/:id',             		 	   '_resource_edit');         	  	  	// ajouter une ressource dans le depot
+$app->put(    '/resource/:resource/id/:id',             		 	   '_resource_edit');         	  	  	// editer une ressource dans le depot
+$app->delete(    '/resource/:resource/id/:id',             		 	   '_resource_delete');         	  	// supprimer une ressource dans le depot
+
 
 
 function _resource_list($resource){
@@ -408,6 +410,56 @@ function _resource_edit($resource, $id){
 	    	$app->halt(401);
 	    	exit(0);
 		}
+	}
+	else {
+	    $app = \Slim\Slim::getInstance();
+	    $app->halt(404);
+	}
+	exit(0);
+
+}
+
+function _resource_delete($resource, $id){
+
+	$app = \Slim\Slim::getInstance();
+	$depot_array = parse_ini_file('depot/depot.ini', true);
+	
+	if(file_exists('depot/'.$resource.'/'.$id.'.json')){
+		$data = $app->request()->getBody();
+		$data = json_decode($data, true);
+		$data_depot = json_decode(file_get_contents("depot/$resource/$id.json"), true);
+		if(empty($data['_api_key_user']) or empty($data['_api_key_password'])){
+			$app = \Slim\Slim::getInstance();
+	    	$app->halt(400);
+	    	exit(0);
+		}
+		if($depot_array['OPTION']['open'] == "0"){
+			$access_array = parse_ini_file('depot/access.ini', true);
+			if(isset($data['_api_key_access'])){
+				if(!isset($access_array['ACCESS'][$data['_api_key_user']]) or $access_array['ACCESS'][$data['_api_key_user']] <> $data['_api_key_access']){
+					$app = \Slim\Slim::getInstance();
+			    	$app->halt(401);
+			    	exit(0);
+				}
+				else{
+					unset($data['_api_key_access']);
+				}
+			}
+			else{
+				$app = \Slim\Slim::getInstance();
+		    	$app->halt(401);
+		    	exit(0);
+			}
+		}
+		if(("".$data['_api_key_user']."" == "".$data_depot['_api_key_user']."") and ("".$data['_api_key_password']."" == "".$data_depot['_api_key_password']."")){
+			unlink("depot/$resource/$id.json");
+		}
+		else{
+			$app = \Slim\Slim::getInstance();
+	    	$app->halt(401);
+	    	exit(0);
+		}
+		
 	}
 	else {
 	    $app = \Slim\Slim::getInstance();
