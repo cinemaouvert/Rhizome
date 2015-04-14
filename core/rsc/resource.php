@@ -5,7 +5,7 @@ $app->get(    '/resource/:resource/key/:key/',       	 			   '_resource_list_by_
 $app->get(    '/resource/:resource/id/:id/',             			   '_resource_view');          		    // affiche une resource sur le depot
 $app->get(    '/resource/:resource/history/id/:id',             	   '_resource_history_view');           // affiche une resource sur le depot AVEC l'historique d'édition
 $app->get(    '/resource/:resource/search/:search/:value',             '_resource_list_by_search');         // affiche une liste de resource via une recherche sur le depot
-$app->post(   '/resource/:resource/',             		 			   '_resource_add');         	  	  	// affiche une liste de ressource du depot
+$app->post(   '/resource/:resource/',             		 			   '_resource_add');         	  	  	// ajouter une ressource dans le depot
 
 
 function _resource_list($resource){
