@@ -305,7 +305,7 @@ function _resource_add($resource){
 	$depot_array = parse_ini_file('depot/depot.ini', true);
 	// initialisation des variables et fonctions
 	$system = new System();
-	$id = uniqid();
+	$id = uniqid('',true);
 	// On verifie si le dossier/ressource existe puis on affiche les informations
 	if(file_exists("depot/$resource")){
 		$data = $app->request()->getBody();

@@ -45,7 +45,7 @@
                         <label>Clé utilisateur (Clé unique)</label>
                         <input name="key_user" type="text" />
                         <label>Clé d'accés (Clé unique)</label>
-                        <input name="key_access" type="text" />
+                        <input name="key_access" type="text" value="<?= uniqid('',true);?>"/>
                         <button class="blue-btn">AJOUTER - MODIFIER</button>
                     </form>
                 </div>
