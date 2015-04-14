@@ -27,7 +27,7 @@
                 <div class="featured-item">
                     <a href="<?= $app->urlFor('dashboard_depot_info'); ?>">
                         <div class="glyph-icon flaticon-speech7" style="color:rgb(23, 199, 85);"></div>
-                        <h6 class="text-center">Information sur le depot</h6>
+                        <h6 class="text-center">Information  / Option sur le depot</h6>
                     </a>
                 </div>
             </div>

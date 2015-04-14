@@ -27,7 +27,7 @@
                 <div class="featured-item">
                     <a href="<?= $app->urlFor('dashboard_depot_info'); ?>">
                         <div class="glyph-icon flaticon-speech7" style="color:rgb(23, 199, 85);"></div>
-                        <h6 class="text-center">Information sur le depot</h6>
+                        <h6 class="text-center">Information / Option sur le depot</h6>
                     </a>
                 </div>
             </div>
@@ -49,6 +49,14 @@
                         <button class="blue-btn">AJOUTER - MODIFIER</button>
                     </form>
                 </div>
+                <br />
+                <div class="panel radius">
+                  <h5>Mode ouvert / fermé.</h5>
+                  <p>Le mode ouvert / fermé permet de filtrer les utilisateurs en écriture dans votre codb-depot. En mode ouvert tous
+                    le monde peut ajouter des ressources. Si vous voulez seuleument autoriser certaines personnes à écriré dans votre codb-depot passer
+                    le en mode fermé. Il vous suffit alors d'associer la clé utilisateur de la personne choisi avec une clé d'accés. Puis de lui transmettre cette derniere.
+                    Il pourra alors écrire dans votre codb-depot.</p>
+                </div>
             </div>
             <div class="large-8 columns">
                 <div id="sign-up">
@@ -63,6 +71,12 @@
                     ?>
                     <br /><br />
                     Votre depot est en version : <?= $depot['VERSION']['DESCRIPTION']['version']; ?>
+                    <br /><br />
+                    Nombre de ressource disponible sur le depot :  <?= count(glob('depot/*/*.json')); ?> <br />
+                    Nombre de ressource "Attachment" sur le depot :  <?= count(glob('depot/attachment/*.json')); ?> <br />
+                    Nombre de ressource "Movie" sur le depot :  <?= count(glob('depot/movie/*.json')); ?> <br />
+                    Nombre de ressource "Organisation" sur le depot :  <?= count(glob('depot/organisation/*.json')); ?> <br />
+                    Nombre de ressource "People" sur le depot :  <?= count(glob('depot/people/*.json')); ?> <br />
                 </div>
                 <br />
                 <div id="sign-up">
