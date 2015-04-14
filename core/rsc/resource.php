@@ -337,6 +337,7 @@ function _resource_add($resource){
 		unset($data['_api_data']);
 		$data['_api_data']['1'] = $data_cache;
 		$data['_api_data']['1']['_edited_on'] = date("m/d/Y H:i:s");
+		$data['_api_data']['1']['_edited_by'] = $data['_api_key_user'];
 		
 		$data = $system->_filter_json_post(json_encode($data));
 		$system->_write_json_file($data, "depot/$resource/$id.json");
