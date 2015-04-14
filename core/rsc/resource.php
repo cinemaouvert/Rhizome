@@ -318,7 +318,7 @@ function _resource_add($resource){
 		if($depot_array['OPTION']['open'] == "0"){
 			$access_array = parse_ini_file('depot/access.ini', true);
 			if(isset($data['_api_key_access'])){
-				if(isset($access_array['ACCESS'][$data['_api_key_user']]) and $access_array['ACCESS'][$data['_api_key_user']] <> $data['_api_key_access']){
+				if(!isset($access_array['ACCESS'][$data['_api_key_user']]) or $access_array['ACCESS'][$data['_api_key_user']] <> $data['_api_key_access']){
 					$app = \Slim\Slim::getInstance();
 			    	$app->halt(401);
 			    	exit(0);
@@ -373,7 +373,7 @@ function _resource_edit($resource, $id){
 		if($depot_array['OPTION']['open'] == "0"){
 			$access_array = parse_ini_file('depot/access.ini', true);
 			if(isset($data['_api_key_access'])){
-				if(isset($access_array['ACCESS'][$data['_api_key_user']]) and $access_array['ACCESS'][$data['_api_key_user']] <> $data['_api_key_access']){
+				if(!isset($access_array['ACCESS'][$data['_api_key_user']]) or $access_array['ACCESS'][$data['_api_key_user']] <> $data['_api_key_access']){
 					$app = \Slim\Slim::getInstance();
 			    	$app->halt(401);
 			    	exit(0);
