@@ -138,10 +138,10 @@ function _resource_view($resource, $id){
 		$result['_api_link']['_view_history']['_method'] = 'GET';
 		$result['_api_link']['_edit']['_href'] = $ini_array['DEPOT']['local'].'resource/'.$resource.'/id/'.$result['_api_rsc']['_id'];
 		$result['_api_link']['_edit']['_method'] = 'PUT';
-		if($result1['_api_key_user'] <> "false") $result['_api_link']['_edit']['_require'] = '_api_key_password';
+		if($result1['_api_key_user'] <> "false") $result['_api_link']['_edit']['_require'] = 'authentication';
 		$result['_api_link']['_delete']['_href'] = $ini_array['DEPOT']['local'].'resource/'.$resource.'/id/'.$result['_api_rsc']['_id'];
 		$result['_api_link']['_delete']['_method'] = 'DELETE';
-		if($result1['_api_key_user'] <> "false") $result['_api_link']['_delete']['_require'] = '_api_key_password';
+		if($result1['_api_key_user'] <> "false") $result['_api_link']['_delete']['_require'] = 'authentication';
 
 		$count = count($result1['_api_data']);
 		$data = $result1['_api_data'][$count];
