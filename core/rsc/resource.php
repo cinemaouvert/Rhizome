@@ -1,6 +1,7 @@
 <?php
 
 $app->get(    '/resource/:resource/',             		 			   '_resource_list');         	  	  	// affiche une liste de ressource du depot
+$app->get(    '/resource/:resource/o/:p_index_first/:p_index_last',    '_resource_list_offset');         	// affiche une liste de ressource du depot
 $app->get(    '/resource/:resource/key/:key/',       	 			   '_resource_list_by_key');            // affiche une liste de ressource sur le depot via une clé utilisateur
 $app->get(    '/resource/:resource/id/:id/',             			   '_resource_view');          		    // affiche une resource sur le depot
 $app->get(    '/resource/:resource/history/id/:id',             	   '_resource_history_view');           // affiche une resource sur le depot AVEC l'historique d'édition
@@ -10,18 +11,21 @@ $app->put(    '/resource/:resource/id/:id',             		 	   '_resource_edit')
 $app->delete( '/resource/:resource/id/:id',             		 	   '_resource_delete');         	  	// supprimer une ressource dans le depot
 
 
-
 function _resource_list($resource){
+	_resource_list_offset($resource, '1', '20');
+}
+
+function _resource_list_offset($resource, $p_index_first, $p_index_last){
 	$app = \Slim\Slim::getInstance();
 	$depot_array = parse_ini_file('depot/depot.ini', true);
 	if($depot_array['DEPOT']['local'] == "") $app->response->redirect($app->urlFor('install'), 303);
 	// initialisation des variables et fonctions
 	$system = new System();
 	$i = 0;
-
+	$more = false;
 	// Analyse avec sections de depot.ini .
 	$ini_array = parse_ini_file('depot/depot.ini', true);
-
+	if($p_index_last-$p_index_first >20) $app->halt(416); // Si l'écart dans offset est plus grand que 20 alors on fait un 416
 	// On verifie si le dossier/ressource existe puis on affiche les informations
 	if(file_exists("depot/$resource")){
 		if($dir = opendir("depot/$resource")){
@@ -34,7 +38,18 @@ function _resource_list($resource){
 				$value = str_replace("depot/$resource/", "", $value);
 				$value = str_replace(".json", "", $value);
 			}
-			foreach($list_rsc as &$value) { // on  utilise les list d'id de ressource pour contacter l'api et lister les détails de chaque ressource
+
+			$list_rsc_total = $list_rsc;
+
+			foreach ($list_rsc as $key => $value) { // On ne garde que les offset demandé
+				if($key < $p_index_first-1 or $key > $p_index_last-1){
+					unset($list_rsc[$key]);
+					$more = true;
+				} 
+			}
+
+			$i = 0;
+			foreach($list_rsc as $key => $value) { // on  utilise les list d'id de ressource pour contacter l'api et lister les détails de chaque ressource
 				$depot = $ini_array['DEPOT']['local'];
 				$id = $value;
 				if($system->_get_http_response_code($depot.'resource/'.$resource.'/id/'.$id) != "404"){
@@ -44,14 +59,24 @@ function _resource_list($resource){
 			    	$result[$i] = $result1;
 			    	$i++;
 				}
+				
 			}
 		}
 		closedir($dir);
-		if(isset($result)) echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
-		else {
+		if($more == true){
 			$app = \Slim\Slim::getInstance();
-		    $app->halt(404);
+			$app->response->headers->set('Content-Range', "$p_index_first - $p_index_last / ".count($list_rsc_total));
+			$app->response->headers->set('Accept-Range', "$resource 20");
+		    $app->halt(206, $system->_filter_json(json_encode($result)));
+		}else{
+			if(isset($result)) echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
+			else {
+				$app = \Slim\Slim::getInstance();
+			    $app->halt(404);
+			}
 		}
+		
+
 	}
 	else {
 	    $app = \Slim\Slim::getInstance();
@@ -60,6 +85,7 @@ function _resource_list($resource){
 	exit(0);
 
 }
+
 
 function _resource_list_by_key($resource, $key){
 	$app = \Slim\Slim::getInstance();
