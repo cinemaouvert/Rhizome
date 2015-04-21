@@ -6,7 +6,7 @@ $app->get(    '/resolver/:resource/key/:key/',               			'_resolver_resou
 
 
 function _resolver_resource_all($resource){
-	_resolver_resource_all_offset($resource, '1', '1');
+	_resolver_resource_all_offset($resource, '1', '20');
 }
 
 function _resolver_resource_all_offset($resource, $p_index_first, $p_index_last){
