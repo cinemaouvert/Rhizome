@@ -67,7 +67,12 @@ function _resource_list_offset($resource, $p_index_first, $p_index_last){
 			$app = \Slim\Slim::getInstance();
 			$app->response->headers->set('Content-Range', "$p_index_first - $p_index_last / ".count($list_rsc_total));
 			$app->response->headers->set('Accept-Range', "$resource 20");
-		    $app->halt(206, $system->_filter_json(json_encode($result)));
+		    
+		    if(isset($result)) $app->halt(206, $system->_filter_json(json_encode($result))); // Envoi de la réponse
+			else {
+				$app = \Slim\Slim::getInstance();
+			    $app->halt(404);
+			}
 		}else{
 			if(isset($result)) echo $system->_filter_json(json_encode($result)); // Envoi de la réponse
 			else {
