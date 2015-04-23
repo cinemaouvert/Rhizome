@@ -22,11 +22,11 @@ function _echo_attachment_by_id($id){
     }
 
 	// On traite le resultat
-	$app->response->headers->set('Content-Type', 'image/'.$result['_api_data']['data_type']);
+	$app->response->headers->set('Content-Type', $result['_api_data']['data_type']);
 	if($result <> null){
 		$data = base64_decode($result['_api_data']['data']);
 		$im = imagecreatefromstring($data);
-		header('Content-Type: image/'.$result['_api_data']['data_type']);
+		header('Content-Type: '.$result['_api_data']['data_type']);
 	    imagepng($im);
 	    imagedestroy($im);
 	} 
