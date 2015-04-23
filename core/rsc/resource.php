@@ -30,19 +30,21 @@ function _resource_list_offset($resource, $p_index_first, $p_index_last){
 	if(file_exists("depot/$resource")){
 		if($dir = opendir("depot/$resource")){
 			$list_rsc = glob("depot/$resource/*.json"); // On va chercher toutes les ressources dans le fichier ressource désigné par $ressource
+			
 			// on trie la liste de ressource par date plus récente
 			usort($list_rsc, function($a, $b) {
 			    return filemtime($a) < filemtime($b);
 			});
-			foreach($list_rsc as &$value) { // On ne garde que l'id de la ressource.
-				$value = str_replace("depot/$resource/", "", $value);
-				$value = str_replace(".json", "", $value);
-			}
-
+			$list_rsc_total1 = $list_rsc;
+			
+				$list_rsc = str_replace("depot/$resource/", "", $list_rsc);
+				$list_rsc = str_replace(".json", "", $list_rsc);
+			
+			$list_rsc_total1 = $list_rsc;
 			$list_rsc_total = $list_rsc;
 
-			foreach ($list_rsc as $key => $value) { // On ne garde que les offset demandé
-				if($key < $p_index_first-1 or $key > $p_index_last-1){
+			foreach ($list_rsc as $key) { // On ne garde que les offset demandé
+				if($key < $p_index_first or $key > $p_index_last){
 					unset($list_rsc[$key]);
 					$more = true;
 				} 
