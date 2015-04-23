@@ -346,7 +346,7 @@ function _resource_add($resource){
 		$data = json_decode($data, true);
 		if(empty($data['_api_key_user']) or empty($data['_api_key_password']) or empty($data['_api_data'])){
 			$app = \Slim\Slim::getInstance();
-	    	$app->halt(400);
+	    	$app->halt(400, json_encode($data));
 	    	exit(0);
 		}
 		if($depot_array['OPTION']['open'] == "0"){
