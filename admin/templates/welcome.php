@@ -64,7 +64,7 @@
                     <div class="glyph-icon flaticon-boat5"></div>
                     <h4>Ouvert</h4>
                     <div>
-                        Vous pouvez apporter votre aide dans le développement de Rhizome via <a href="https://github.com/cinemaouvert/CODB-Depot">GitHub</a>. <br /><br />
+                        Vous pouvez apporter votre aide dans le développement de Rhizome via <a href="https://github.com/cinemaouvert/Rhizome">GitHub</a>. <br /><br />
                     </div>
                 </div>
             </div>
