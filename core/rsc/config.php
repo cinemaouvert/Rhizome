@@ -34,7 +34,7 @@ function _config_home(){
 	if(isset($data['login'])) $_SESSION['login'] = $data['login'];
 	if(isset($data['login'])) $_SESSION['password'] = $data['password'];
 	$path = "../";
-	$app->response->redirect($app->urlFor('dashboard'), 303);
+	$app->response->redirect($app->urlFor('dashboard_depot_info'), 303);
 }
 
 function _config_dashboard(){

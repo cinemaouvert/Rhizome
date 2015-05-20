@@ -2,7 +2,7 @@
 <div id="additional-info">
         <div class="row">
             <div class="large-12 columns">
-                <h2 class="color-white headings text-center">Cinema Open Data Base - Administration</h2>
+                <h2 class="color-white headings text-center">Open Rhizome Deposit - Administration</h2>
             </div>
         </div>
     </div>

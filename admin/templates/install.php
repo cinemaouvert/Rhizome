@@ -2,7 +2,7 @@
 <div id="additional-info">
         <div class="row">
             <div class="large-12 columns">
-                <h2 class="color-white headings text-center">Cinema Open Data Base - Administration</h2>
+                <h2 class="color-white headings text-center">Open Rhizome Deposit - Administration</h2>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="large-12 columns">
                     <h5 class="color-black" style="text-align:center; line-height: 27px;">
-                        Remplissez ce formulaire qui va se charger de créer la configuration de votre codb.
+                        Remplissez ce formulaire qui va se charger de créer la configuration de votre depot Rhizome.
                     </h5>            
                 </div>
             </div>
