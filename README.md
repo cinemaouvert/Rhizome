@@ -1,5 +1,3 @@
-# Rhizome
-
 Qu'est ce que Open Rhizome Deposit ? 
 ---------------------
 
