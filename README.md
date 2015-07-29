@@ -14,6 +14,7 @@ Pour ajouter des films vous pouvez soit, installer le client codb https://github
 
 
 L'api ce decomposse de cette maniere :
+---------------------
 
 Pour appeler une ressource sur Rhizome, il faut passer par un appel http ( GET, POST, PUT, DELETE).
 
@@ -40,6 +41,7 @@ Fonction à propos du depot:
 
 Les fonctions depot, sont relatif au information sur le depot.
 
+```
 GET			/depot/                           // affiche information du depot.
 
 GET			/depot/version/                   // affiche version du depot.
@@ -49,27 +51,32 @@ GET			/depot/option/                    // affiche option du depot.
 GET			/depot/resolver/                  // affiche tous les depots qui sont connecté à ce depot.
 
 GET			/depot/resource/:resource/        // affiche les champs d'une ressource.
+```
 
 
 Fonction à propos de écho :
 
 Les fonctions écho sont relative au fichier attaché à des ressources. Qui sont considéré comme des ressources spécial.
 
+```
 GET			/echo/attachment/id/:id/           // Genere une resource attachment par rapport à son id.
+```
 
 Fonction à propos de résolver:
 
 Les fonctions du résolver sont relative au contenu du depot, et des depots qui sont connecté au depot principal.
 
+```
 GET			/resolver/:resource/									// affiche  les 20 dernieres ressource d'un type du resolver
 
 GET			/resolver/:resource/o/:p_index_first/:p_index_last		// affiche les ressources d'un type du resolver via un offset
 
 GET			/resolver/:resource/key/:key/							// affiche toutes les ressource d'un type par clé utilisateur du resolver
-
+```
 
 Fonction à propos de resource :
 
+```
 GET			/resource/:resource/             		 			   	  	// affiche une liste de ressource du depot (20 dernieres ressource)
 
 GET			/resource/:resource/o/:p_index_first/:p_index_last       	// affiche une liste de ressource du depot via un offset ( écart de 20 maximum )
@@ -87,3 +94,4 @@ POST		/resource/:resource/             		 			   	  	// ajouter une ressource dan
 PUT			/resource/:resource/id/:id              		 	   	  	// editer une ressource dans le depot
 
 DELETE		/resource/:resource/id/:id              		 	  	  	// supprimer une ressource dans le depot
+```
