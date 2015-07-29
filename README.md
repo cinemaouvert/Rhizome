@@ -93,3 +93,9 @@ PUT			/resource/:resource/id/:id              		 	   	  	// editer une ressource
 
 DELETE		/resource/:resource/id/:id              		 	  	  	// supprimer une ressource dans le depot
 ```
+
+### Lexique :
+
+Un depot : Un depot est une instance de rhizome, deployer sur un ftp, ou un serveur.
+
+Un resolver : Le resolver est un outil qui réuni plusieurs depots ensemble. Chaque depot a son resolver.
