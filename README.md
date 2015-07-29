@@ -64,6 +64,3 @@ GET			/resource/:resource/search/:search/:value                   // affiche une
 POST		/resource/:resource/             		 			   	  	// ajouter une ressource dans le depot
 PUT			/resource/:resource/id/:id              		 	   	  	// editer une ressource dans le depot
 DELETE		/resource/:resource/id/:id              		 	  	  	// supprimer une ressource dans le depot
-=======
->>>>>>> origin/master
->>>>>>> Stashed changes
