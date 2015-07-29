@@ -48,9 +48,13 @@ Les fonctions écho sont relative au fichier attaché à des ressources. Qui son
 GET			/echo/attachment/id/:id/           // Genere une resource attachment par rapport à son id.
 
 Fonction à propos de résolver:
+
 Les fonctions du résolver sont relative au contenu du depot, et des depots qui sont connecté au depot principal.
+
 GET			/resolver/:resource/									// affiche  les 20 dernieres ressource d'un type du resolver
+
 GET			/resolver/:resource/o/:p_index_first/:p_index_last		// affiche les ressources d'un type du resolver via un offset
+
 GET			/resolver/:resource/key/:key/							// affiche toutes les ressource d'un type par clé utilisateur du resolver
 
 
