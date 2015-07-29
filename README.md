@@ -20,11 +20,11 @@ Pour appeler une ressource sur Rhizome, il faut passer par un appel http ( GET, 
 
 Certaines informations sont requis pour pouvoir modifier une ressource, pour en supprimer, ou bien pour en ajouter.
 
-Informations relatifs à l'utisateur.
+## Informations relatifs à l'utisateur.
 La clé utilisateur : _api_key_user : C'est l'identifiant d'un utilisateur.
 Clé signature utilisateur : _api_key_password : C'est la signature d'un utilisateur. Cette information ne doit jamais être publique.
 
-Information relatifs au depot Rhizome.
+## Information relatifs au depot Rhizome.
 Il existe actuellement deux etats principal pour un depot rhizome. 
 Il est peut être soit, en mode ouvert, et bénéficier de l'ajout de toutes personnes souhaitant contribuer.
 Ou bien il peut etre, en mode fermé, dans ce cas, seul les utilisateurs avec un clé de depot, peuvent contribuer.
@@ -32,7 +32,7 @@ Ou bien il peut etre, en mode fermé, dans ce cas, seul les utilisateurs avec un
 Clé du depot : _api_key_access : C'est la clé d'accés fournit par le depot attaché à _api_key_user.
 
 
-Rhyzome fonctionne comme un systeme d'api :
+## Rhyzome fonctionne comme un systeme d'api :
 
 Les fonctions disponibles via l'api de Rhyzome sont nombreuses. Elle sont decouper en section.
 
