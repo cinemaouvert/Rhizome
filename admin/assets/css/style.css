@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .blue-btn {
-    background-color: rgba(170, 0, 0, 0.69);
+    background-color: #a00;
 }
 
 
@@ -172,7 +172,7 @@ button, .button {
 
 #additional-info {
     padding-top: 40px;
-    background-color: rgba(170, 0, 0, 0.69);
+    background-color: #a00;
     color: #fff;
 }
 
